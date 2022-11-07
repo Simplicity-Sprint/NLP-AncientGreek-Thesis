@@ -1,3 +1,7 @@
 import torch
 
-from transformers i
+from transformers import RobertaTokenizerFast
+
+
+def mlm(
+        batch_input_ids: torch.Tens
