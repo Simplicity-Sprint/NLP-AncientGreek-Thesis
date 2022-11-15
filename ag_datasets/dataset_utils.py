@@ -8,4 +8,6 @@ def mlm(
         tokenizer: RobertaTokenizerFast,
         mask_probability_p: float = 0.15
 ) -> torch.Tensor:
-    """Randomly masks the parts
+    """Randomly masks the parts of the given tensor, according to a masking
+        probability `p`."""
+  
