@@ -10,4 +10,5 @@ def mlm(
 ) -> torch.Tensor:
     """Randomly masks the parts of the given tensor, according to a masking
         probability `p`."""
-  
+    # clone the array and fix its shape to [B, maxlen]
+    batch_input_ids_ = b
