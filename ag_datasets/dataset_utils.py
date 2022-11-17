@@ -18,3 +18,4 @@ def mlm(
     # random floats in [0, 1] for each token, for each batch
     random_array = torch.rand(batch_input_ids_.shape)
 
+    # mask tokens that are not [<s>, </s>, <pad>] according to 
