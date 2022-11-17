@@ -15,4 +15,6 @@ def mlm(
     if len(batch_input_ids_.shape) == 1:
         batch_input_ids_ = batch_input_ids_.reshape(1, -1)
 
-    # random floats in [0, 1] for each 
+    # random floats in [0, 1] for each token, for each batch
+    random_array = torch.rand(batch_input_ids_.shape)
+
