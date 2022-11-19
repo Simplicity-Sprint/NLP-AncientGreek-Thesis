@@ -22,4 +22,5 @@ def mlm(
     #  masking probability
     valid_indices = (batch_input_ids_ != tokenizer.bos_token_id) * \
                     (batch_input_ids_ != tokenizer.eos_token_id) * \
-                
+                    (batch_input_ids_ != tokenizer.pad_token_id)
+    masked_array = (random_a
