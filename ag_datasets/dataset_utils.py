@@ -20,4 +20,5 @@ def mlm(
 
     # mask tokens that are not [<s>, </s>, <pad>] according to the
     #  masking probability
-    valid_indices = (batch_input_ids
+    valid_indices = (batch_input_ids_ != tokenizer.bos_token_id) * \
+                    (batch
