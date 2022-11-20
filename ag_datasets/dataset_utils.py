@@ -28,4 +28,6 @@ def mlm(
     # for each batch element
     for i in range(batch_input_ids_.shape[0]):
         # get the indices of the tokens that will be masked, as a flat list
-        mask_indices = torch.flatten(masked_array[i].nonzero()).tolist(
+        mask_indices = torch.flatten(masked_array[i].nonzero()).tolist()
+        # mask the corresponding indices for this batch
+        batch_input_ids_[i
