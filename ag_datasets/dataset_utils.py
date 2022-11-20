@@ -26,4 +26,5 @@ def mlm(
     masked_array = (random_array < mask_probability_p) * valid_indices
 
     # for each batch element
-    fo
+    for i in range(batch_input_ids_.shape[0]):
+        # get the indic
