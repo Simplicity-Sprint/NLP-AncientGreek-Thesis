@@ -30,4 +30,6 @@ def mlm(
         # get the indices of the tokens that will be masked, as a flat list
         mask_indices = torch.flatten(masked_array[i].nonzero()).tolist()
         # mask the corresponding indices for this batch
-        batch_input_ids_[i
+        batch_input_ids_[i, mask_indices] = tokenizer.mask_token_id
+
+    return batch_input_ids_
