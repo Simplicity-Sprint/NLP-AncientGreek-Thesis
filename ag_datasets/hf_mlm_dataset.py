@@ -6,4 +6,5 @@ from typing import Dict
 from pathlib import Path
 
 
-class AGHFMLMDataset(torch
+class AGHFMLMDataset(torch.utils.data.Dataset):
+    """Implements a torch Dataset cla
