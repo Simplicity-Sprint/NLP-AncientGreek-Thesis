@@ -7,4 +7,5 @@ from pathlib import Path
 
 
 class AGHFMLMDataset(torch.utils.data.Dataset):
-    """Implements a torch Dataset cla
+    """Implements a torch Dataset class for Ancient Greek input data that
+        will be used by the HF
