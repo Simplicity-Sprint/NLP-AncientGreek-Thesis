@@ -15,4 +15,5 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
             input_ids_path: Path,
     ) -> None:
         """
-        :param input_ids_pat
+        :param input_ids_path:
+            Path to the .pkl file containing encoded (by the tok
