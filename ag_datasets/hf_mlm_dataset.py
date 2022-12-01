@@ -12,4 +12,7 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
 
     def __init__(
             self,
-            
+            input_ids_path: Path,
+    ) -> None:
+        """
+        :param input_ids_pat
