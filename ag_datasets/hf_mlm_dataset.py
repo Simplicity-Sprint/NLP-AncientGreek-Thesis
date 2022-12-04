@@ -18,4 +18,6 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
         :param input_ids_path:
             Path to the .pkl file containing encoded (by the tokenizer)
             input sentences for the model.
- 
+        """
+        with open(input_ids_path, 'rb') as fp:
+            inpu
