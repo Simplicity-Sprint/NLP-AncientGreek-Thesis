@@ -16,4 +16,6 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
     ) -> None:
         """
         :param input_ids_path:
-            Path to the .pkl file containing encoded (by the tok
+            Path to the .pkl file containing encoded (by the tokenizer)
+            input sentences for the model.
+ 
