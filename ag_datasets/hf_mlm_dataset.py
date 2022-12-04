@@ -20,4 +20,5 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
             input sentences for the model.
         """
         with open(input_ids_path, 'rb') as fp:
-            inpu
+            input_ids = pickle.load(fp)
+        self.input_ids = [{'input_ids': 
