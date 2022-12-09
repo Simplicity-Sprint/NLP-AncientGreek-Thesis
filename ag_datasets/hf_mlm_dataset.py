@@ -21,4 +21,5 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
         """
         with open(input_ids_path, 'rb') as fp:
             input_ids = pickle.load(fp)
-        self.input_ids = [{'input_ids': 
+        self.input_ids = [{'input_ids': torch.tensor(e, dtype=torch.long)}
+                          for e in
