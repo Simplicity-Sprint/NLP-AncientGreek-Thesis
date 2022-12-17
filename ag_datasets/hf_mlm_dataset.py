@@ -27,4 +27,5 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
     def __len__(self) -> int:
         return len(self.input_ids)
 
-    def __getitem__(self, item: int) -> Dict[str,
+    def __getitem__(self, item: int) -> Dict[str, torch.Tensor]:
+        return self.input
