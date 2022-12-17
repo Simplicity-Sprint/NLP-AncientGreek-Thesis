@@ -28,4 +28,4 @@ class AGHFMLMDataset(torch.utils.data.Dataset):
         return len(self.input_ids)
 
     def __getitem__(self, item: int) -> Dict[str, torch.Tensor]:
-        return self.input
+        return self.input_ids[item]
