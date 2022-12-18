@@ -48,3 +48,8 @@ class AGMLMDataset(torch.utils.data.Dataset):
         input_ids = torch.tensor(self.input_ids[item] +
                                  [self.tokenizer.pad_token_id] * pads_needed)
         return {
+            # implements dynamic masking as in the original RoBERTa paper
+            'input_ids': mlm(input_ids, self.tokenizer, self.p).squeeze(),
+            'attention_mask': input_ids != self.tokenizer.pad_token_id,
+            'labels': input_ids
+        }
