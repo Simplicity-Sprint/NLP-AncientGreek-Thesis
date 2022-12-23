@@ -8,4 +8,7 @@ from transformers import RobertaTokenizerFast
 
 
 class PoSDataset(Dataset):
- 
+    """PoS Tagging Dataset."""
+
+    def __init__(
+          
