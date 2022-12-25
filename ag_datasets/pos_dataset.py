@@ -11,4 +11,6 @@ class PoSDataset(Dataset):
     """PoS Tagging Dataset."""
 
     def __init__(
-          
+            self,
+            tokenizer: RobertaTokenizerFast,
+   
