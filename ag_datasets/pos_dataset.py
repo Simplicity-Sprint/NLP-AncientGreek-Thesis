@@ -13,4 +13,6 @@ class PoSDataset(Dataset):
     def __init__(
             self,
             tokenizer: RobertaTokenizerFast,
-   
+            input_ids_path: Path,
+            labels_path: Path,
+     
