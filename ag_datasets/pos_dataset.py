@@ -15,4 +15,8 @@ class PoSDataset(Dataset):
             tokenizer: RobertaTokenizerFast,
             input_ids_path: Path,
             labels_path: Path,
-     
+            le_path: Path,
+            maxlen: int
+    ):
+        """
+        :par
