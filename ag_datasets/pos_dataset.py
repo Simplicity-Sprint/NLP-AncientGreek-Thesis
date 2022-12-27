@@ -19,4 +19,5 @@ class PoSDataset(Dataset):
             maxlen: int
     ):
         """
-        :par
+        :param tokenizer:
+            Pre-trained RoBERTa tokenizer for t
