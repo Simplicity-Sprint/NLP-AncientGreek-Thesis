@@ -23,4 +23,6 @@ class PoSDataset(Dataset):
             Pre-trained RoBERTa tokenizer for the Ancient Greek language.
 
         :param input_ids_path:
-            Path to t
+            Path to the .pkl file containing the input IDs.
+
+        :param la
