@@ -20,4 +20,7 @@ class PoSDataset(Dataset):
     ):
         """
         :param tokenizer:
-            Pre-trained RoBERTa tokenizer for t
+            Pre-trained RoBERTa tokenizer for the Ancient Greek language.
+
+        :param input_ids_path:
+            Path to t
