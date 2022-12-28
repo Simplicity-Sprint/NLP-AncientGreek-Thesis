@@ -29,4 +29,5 @@ class PoSDataset(Dataset):
             Path to the .pkl file containing the corresponding PoS labels.
 
         :param le_path:
-            Path to the .pkl file containing the pr
+            Path to the .pkl file containing the pre-trained sklearn
+            LabelEncoder obj
