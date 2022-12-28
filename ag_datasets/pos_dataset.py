@@ -25,4 +25,5 @@ class PoSDataset(Dataset):
         :param input_ids_path:
             Path to the .pkl file containing the input IDs.
 
-        :param la
+        :param labels_path:
+            Path to the .pkl file containing the corresponding P
