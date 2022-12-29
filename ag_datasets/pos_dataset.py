@@ -30,4 +30,7 @@ class PoSDataset(Dataset):
 
         :param le_path:
             Path to the .pkl file containing the pre-trained sklearn
-            LabelEncoder obj
+            LabelEncoder object.
+
+        :param maxlen:
+            Maximum length of a s
