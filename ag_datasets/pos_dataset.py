@@ -33,4 +33,7 @@ class PoSDataset(Dataset):
             LabelEncoder object.
 
         :param maxlen:
-            Maximum length of a s
+            Maximum length of a sequence.
+        """
+        self.tokenizer = tokenizer
+        with open(i
