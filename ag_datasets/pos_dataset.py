@@ -44,4 +44,7 @@ class PoSDataset(Dataset):
             self.le = pickle.load(fp)
         self.maxlen = maxlen
 
-    def __len__(self) -> in
+    def __len__(self) -> int:
+        return len(self.input_ids)
+
+    def __getitem__(self, item: in
