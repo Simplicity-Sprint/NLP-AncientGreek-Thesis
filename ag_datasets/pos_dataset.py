@@ -36,4 +36,5 @@ class PoSDataset(Dataset):
             Maximum length of a sequence.
         """
         self.tokenizer = tokenizer
-        with open(i
+        with open(input_ids_path, 'rb') as fp:
+            self.input_ids = pickle.lo
