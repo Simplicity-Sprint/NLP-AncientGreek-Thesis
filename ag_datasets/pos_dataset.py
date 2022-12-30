@@ -39,4 +39,6 @@ class PoSDataset(Dataset):
         with open(input_ids_path, 'rb') as fp:
             self.input_ids = pickle.load(fp)
         with open(labels_path, 'rb') as fp:
-            self.labels = pic
+            self.labels = pickle.load(fp)
+        with open(le_path, 'rb') as fp:
+            self.le = pickle.
