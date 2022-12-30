@@ -41,4 +41,7 @@ class PoSDataset(Dataset):
         with open(labels_path, 'rb') as fp:
             self.labels = pickle.load(fp)
         with open(le_path, 'rb') as fp:
-            self.le = pickle.
+            self.le = pickle.load(fp)
+        self.maxlen = maxlen
+
+    def __len__(self) -> in
