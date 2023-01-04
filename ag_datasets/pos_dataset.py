@@ -47,4 +47,5 @@ class PoSDataset(Dataset):
     def __len__(self) -> int:
         return len(self.input_ids)
 
-    def __getitem__(self, item: in
+    def __getitem__(self, item: int) -> Dict[str, torch.Tensor]:
+        pads_needed = self.ma
