@@ -49,4 +49,5 @@ class PoSDataset(Dataset):
 
     def __getitem__(self, item: int) -> Dict[str, torch.Tensor]:
         pads_needed = self.maxlen - len(self.input_ids[item])
-        input_ids = torch.tensor(self.input
+        input_ids = torch.tensor(self.input_ids[item] +
+                                 [self.tokenizer.pad_token_id] * pad
