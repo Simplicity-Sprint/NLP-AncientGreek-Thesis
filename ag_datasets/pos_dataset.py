@@ -64,4 +64,5 @@ class PoSDataset(Dataset):
         return self.le.classes_.tolist()
 
     @staticmethod
-  
+    def num_classes(le_path: Path) -> int:
+        with open(le_path, 'rb')
