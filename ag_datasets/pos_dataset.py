@@ -56,4 +56,8 @@ class PoSDataset(Dataset):
         return {
             'input_ids': input_ids,
             'attention_mask': input_ids != self.tokenizer.pad_token_id,
-            
+            'labels': labels
+        }
+
+    @property
+    def classnames(self) -> List[
