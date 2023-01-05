@@ -60,4 +60,8 @@ class PoSDataset(Dataset):
         }
 
     @property
-    def classnames(self) -> List[
+    def classnames(self) -> List[str]:
+        return self.le.classes_.tolist()
+
+    @staticmethod
+  
