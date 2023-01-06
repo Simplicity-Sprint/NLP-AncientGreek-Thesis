@@ -65,4 +65,6 @@ class PoSDataset(Dataset):
 
     @staticmethod
     def num_classes(le_path: Path) -> int:
-        with open(le_path, 'rb')
+        with open(le_path, 'rb') as fp:
+            le = pickle.load(fp)
+        return len(le.classes_.to
