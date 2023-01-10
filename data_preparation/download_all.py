@@ -13,3 +13,6 @@ def create_dir_structure(dirpath: Path) -> None:
     """Deletes directory if it exists, creates it and adds train/val/test
         sub-directories."""
     if os.path.isdir(dirpath):
+        shutil.rmtree(dirpath)
+    os.makedirs(dirpath/'train')
+    os.m
