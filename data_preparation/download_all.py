@@ -19,4 +19,6 @@ def create_dir_structure(dirpath: Path) -> None:
     os.makedirs(dirpath/'test')
 
 
-def downloa
+def download_data():
+    # import here to avoid cyclical ImportError
+    
