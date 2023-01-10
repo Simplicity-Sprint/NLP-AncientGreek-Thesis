@@ -15,4 +15,8 @@ def create_dir_structure(dirpath: Path) -> None:
     if os.path.isdir(dirpath):
         shutil.rmtree(dirpath)
     os.makedirs(dirpath/'train')
-    os.m
+    os.makedirs(dirpath/'val')
+    os.makedirs(dirpath/'test')
+
+
+def downloa
