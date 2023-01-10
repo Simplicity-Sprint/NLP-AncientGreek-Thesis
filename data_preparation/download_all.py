@@ -21,4 +21,5 @@ def create_dir_structure(dirpath: Path) -> None:
 
 def download_data():
     # import here to avoid cyclical ImportError
-    
+    from data_preparation.download_f1kg import download_f1kg
+    fro
