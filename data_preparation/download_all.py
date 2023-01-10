@@ -10,4 +10,6 @@ POS_TARGET_DIR = (PLAIN_TEXT_DATA_DIR/'PoS').resolve()
 
 
 def create_dir_structure(dirpath: Path) -> None:
-    """Deletes directory if it exists, creates it and adds trai
+    """Deletes directory if it exists, creates it and adds train/val/test
+        sub-directories."""
+    if os.path.isdir(dirpath):
