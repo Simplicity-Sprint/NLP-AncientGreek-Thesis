@@ -23,4 +23,5 @@ def download_data():
     # import here to avoid cyclical ImportError
     from data_preparation.download_f1kg import download_f1kg
     from data_preparation.download_portal import download_portal
-    from data_preparation.download_perseus import download_perseu
+    from data_preparation.download_perseus import download_perseus
+    from data_preparation.download_diorisis import download
