@@ -27,4 +27,7 @@ def download_data():
     from data_preparation.download_diorisis import download_diorisis
 
     create_dir_structure(MLM_TARGET_DIR)
-    create_dir_structure(POS
+    create_dir_structure(POS_TARGET_DIR)
+
+    download_f1kg(MLM_TARGET_DIR)
+    download_portal(MLM_TAR
