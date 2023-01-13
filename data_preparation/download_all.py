@@ -24,4 +24,7 @@ def download_data():
     from data_preparation.download_f1kg import download_f1kg
     from data_preparation.download_portal import download_portal
     from data_preparation.download_perseus import download_perseus
-    from data_preparation.download_diorisis import download
+    from data_preparation.download_diorisis import download_diorisis
+
+    create_dir_structure(MLM_TARGET_DIR)
+    create_dir_structure(POS
