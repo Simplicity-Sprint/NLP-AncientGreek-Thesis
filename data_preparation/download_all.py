@@ -32,4 +32,8 @@ def download_data():
     download_f1kg(MLM_TARGET_DIR)
     download_portal(MLM_TARGET_DIR)
     download_perseus(MLM_TARGET_DIR)
-    download_diorisis(MLM
+    download_diorisis(MLM_TARGET_DIR, POS_TARGET_DIR)
+
+
+if __name__ == "__main__":
+    download_data()
