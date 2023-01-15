@@ -30,4 +30,6 @@ def download_data():
     create_dir_structure(POS_TARGET_DIR)
 
     download_f1kg(MLM_TARGET_DIR)
-    download_portal(MLM_TAR
+    download_portal(MLM_TARGET_DIR)
+    download_perseus(MLM_TARGET_DIR)
+    download_diorisis(MLM
