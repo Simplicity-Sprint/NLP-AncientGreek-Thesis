@@ -19,4 +19,9 @@ from data_preparation.download_all import MLM_TARGET_DIR, POS_TARGET_DIR
 
 
 LEGIT_PUNCT = ['.’', '/', '—', ',’', '’', '.', ';', '%', '(', ')', ',', '‘',
-               '·', '«', 
+               '·', '«', '»', '"']
+
+
+def get_tokens_and_pos_tags(
+        sentence_dict: Dict[
+  
