@@ -15,4 +15,7 @@ from data_preparation.data_prep_utils import (
     print_stats_and_save,
     save_pickle
 )
-from data_preparatio
+from data_preparation.download_all import MLM_TARGET_DIR, POS_TARGET_DIR
+
+
+LEGIT_PUNCT = ['.’', '/', '
