@@ -18,4 +18,5 @@ from data_preparation.data_prep_utils import (
 from data_preparation.download_all import MLM_TARGET_DIR, POS_TARGET_DIR
 
 
-LEGIT_PUNCT = ['.’', '/', '
+LEGIT_PUNCT = ['.’', '/', '—', ',’', '’', '.', ';', '%', '(', ')', ',', '‘',
+               '·', '«', 
