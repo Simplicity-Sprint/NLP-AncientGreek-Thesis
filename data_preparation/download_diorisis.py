@@ -27,4 +27,7 @@ def get_tokens_and_pos_tags(
             str,
             Union[str, List[Dict[
                 str,
-                Union[str, Union[str, Dict[str, Li
+                Union[str, Union[str, Dict[str, List[str]]]]]]
+            ]
+        ]
+) -> Tuple[List[str], List[str]
