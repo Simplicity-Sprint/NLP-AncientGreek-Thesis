@@ -24,4 +24,6 @@ LEGIT_PUNCT = ['.’', '/', '—', ',’', '’', '.', ';', '%', '(', ')', ',', 
 
 def get_tokens_and_pos_tags(
         sentence_dict: Dict[
-  
+            str,
+            Union[str, List[Dict[
+      
