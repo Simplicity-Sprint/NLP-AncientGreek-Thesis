@@ -26,4 +26,5 @@ def get_tokens_and_pos_tags(
         sentence_dict: Dict[
             str,
             Union[str, List[Dict[
-      
+                str,
+                Union[str, Union[str, Dict[str, Li
