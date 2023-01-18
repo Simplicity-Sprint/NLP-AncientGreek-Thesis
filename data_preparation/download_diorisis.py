@@ -30,4 +30,5 @@ def get_tokens_and_pos_tags(
                 Union[str, Union[str, Dict[str, List[str]]]]]]
             ]
         ]
-) -> Tuple[List[str], List[str]
+) -> Tuple[List[str], List[str]]:
+    """Given a sentence dictionary, it returns the text parts inside
