@@ -40,4 +40,5 @@ def get_tokens_and_pos_tags(
         # invalid entries are not punct and don't have a lemma ->
         #  whole sentence is broken, skip it
         if token['type'] != 'punct' and \
-                ('le
+                ('lemma' not in token or 'POS' not in token['lemma']):
+          
