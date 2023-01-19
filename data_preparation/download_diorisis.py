@@ -46,4 +46,7 @@ def get_tokens_and_pos_tags(
             return [], []
         elif token['form'] == '':
             return [], []
-        elif token['type'] == 'pu
+        elif token['type'] == 'punct' and token['form'] not in LEGIT_PUNCT:
+            return [], []
+
+  
