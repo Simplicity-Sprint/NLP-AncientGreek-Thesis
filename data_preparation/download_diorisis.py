@@ -36,4 +36,5 @@ def get_tokens_and_pos_tags(
     # lists to hold individual tokens and POS tags
     tokens, labels = [], []
     # iterate through all the tokens
- 
+    for token in sentence_dict['tokens']:
+        # invalid entries are
