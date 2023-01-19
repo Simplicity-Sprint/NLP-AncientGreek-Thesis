@@ -37,4 +37,5 @@ def get_tokens_and_pos_tags(
     tokens, labels = [], []
     # iterate through all the tokens
     for token in sentence_dict['tokens']:
-        # invalid entries are
+        # invalid entries are not punct and don't have a lemma ->
+        #  whole sentence is brok
