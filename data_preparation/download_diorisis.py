@@ -42,4 +42,6 @@ def get_tokens_and_pos_tags(
         if token['type'] != 'punct' and \
                 ('lemma' not in token or 'POS' not in token['lemma']):
             return [], []
-        elif 'lemma' in token and token['lemma
+        elif 'lemma' in token and token['lemma'].get('POS', None) == '':
+            return [], []
+        elif token['form'
