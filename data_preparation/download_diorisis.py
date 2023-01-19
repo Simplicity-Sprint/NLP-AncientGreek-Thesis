@@ -44,4 +44,6 @@ def get_tokens_and_pos_tags(
             return [], []
         elif 'lemma' in token and token['lemma'].get('POS', None) == '':
             return [], []
-        elif token['form'
+        elif token['form'] == '':
+            return [], []
+        elif token['type'] == 'pu
