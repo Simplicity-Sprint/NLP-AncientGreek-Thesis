@@ -38,4 +38,6 @@ def get_tokens_and_pos_tags(
     # iterate through all the tokens
     for token in sentence_dict['tokens']:
         # invalid entries are not punct and don't have a lemma ->
-        #  whole sentence is brok
+        #  whole sentence is broken, skip it
+        if token['type'] != 'punct' and \
+                ('le
