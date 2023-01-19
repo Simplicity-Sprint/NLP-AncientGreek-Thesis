@@ -32,4 +32,5 @@ def get_tokens_and_pos_tags(
         ]
 ) -> Tuple[List[str], List[str]]:
     """Given a sentence dictionary, it returns the text parts inside a list,
-        and the corresponding labels for each string in anothe
+        and the corresponding labels for each string in another list."""
+    # lists to hold individual tokens and POS t
