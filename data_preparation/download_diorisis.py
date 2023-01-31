@@ -49,4 +49,5 @@ def get_tokens_and_pos_tags(
         elif token['type'] == 'punct' and token['form'] not in LEGIT_PUNCT:
             return [], []
 
-  
+        # get the actual Ancient Greek text, clean it, and get the pos tag
+       
