@@ -50,4 +50,5 @@ def get_tokens_and_pos_tags(
             return [], []
 
         # get the actual Ancient Greek text, clean it, and get the pos tag
-        token_text = clean_raw_text(betacode.conv.beta_to_uni(token
+        token_text = clean_raw_text(betacode.conv.beta_to_uni(token['form']))
+        pos = 'punct' if token['type'] == 'pun
