@@ -64,4 +64,5 @@ def convert_to_mlm_format(
         sentences: List[List[List[str]]],
         pos_tags: List[List[List[str]]]
 ) -> List[List[str]]:
-    """Conver
+    """Converts the given sentences (which are in POS format) to MLM format,
+      
