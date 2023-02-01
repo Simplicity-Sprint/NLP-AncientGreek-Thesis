@@ -54,4 +54,11 @@ def get_tokens_and_pos_tags(
         pos = 'punct' if token['type'] == 'punct' else token['lemma']['POS']
 
         # add the entries to the lists
-        tok
+        tokens.append(token_text)
+        labels.append(pos)
+
+    return tokens, labels
+
+
+def convert_to_mlm_format(
+        se
