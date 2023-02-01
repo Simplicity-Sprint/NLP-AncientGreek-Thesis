@@ -62,4 +62,6 @@ def get_tokens_and_pos_tags(
 
 def convert_to_mlm_format(
         sentences: List[List[List[str]]],
-        pos_tags: List[List[Li
+        pos_tags: List[List[List[str]]]
+) -> List[List[str]]:
+    """Conver
