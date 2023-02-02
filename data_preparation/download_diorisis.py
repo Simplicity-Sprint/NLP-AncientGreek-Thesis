@@ -68,4 +68,5 @@ def convert_to_mlm_format(
         basically by concatenating each token with a space if the next token
         is not a punctuation character."""
     mlm_sentences = []
-    for
+    for doc, doc_tags in tqdm(zip(sentences, pos_tags), total=len(sentences),
+   
