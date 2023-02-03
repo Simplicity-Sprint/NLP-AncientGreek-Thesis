@@ -76,4 +76,5 @@ def convert_to_mlm_format(
             for token, tag in zip(sentence[1:], tags[1:]):
                 if tag != 'punct':
                     sentence_as_str += ' '
-                s
+                sentence_as_str += token
+            doc_sentences.a
