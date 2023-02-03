@@ -72,4 +72,5 @@ def convert_to_mlm_format(
                               desc='Converting POS data to MLM format'):
         doc_sentences = []
         for sentence, tags in zip(doc, doc_tags):
-    
+            sentence_as_str = sentence[0]
+            for token, t
