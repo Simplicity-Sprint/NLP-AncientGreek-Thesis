@@ -69,4 +69,7 @@ def convert_to_mlm_format(
         is not a punctuation character."""
     mlm_sentences = []
     for doc, doc_tags in tqdm(zip(sentences, pos_tags), total=len(sentences),
-                              desc='Converting POS data to MLM format'
+                              desc='Converting POS data to MLM format'):
+        doc_sentences = []
+        for sentence, tags in zip(doc, doc_tags):
+    
