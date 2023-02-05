@@ -79,4 +79,7 @@ def convert_to_mlm_format(
                 sentence_as_str += token
             doc_sentences.append(sentence_as_str)
         mlm_sentences.append(doc_sentences)
-    retur
+    return mlm_sentences
+
+
+def download_diorisis(mlm_dest_dir: Path, pos_dest_
