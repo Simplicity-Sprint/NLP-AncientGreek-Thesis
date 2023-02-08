@@ -83,4 +83,5 @@ def convert_to_mlm_format(
 
 
 def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
-    train_sentences,
+    train_sentences, val_sentences, test_sentences = [], [], []
+    train_labels, val_labels, test_labels = [], 
