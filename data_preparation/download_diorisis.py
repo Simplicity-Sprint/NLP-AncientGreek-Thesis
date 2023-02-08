@@ -89,4 +89,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
 
     url = 'https://figshare.com/ndownloader/files/27831960'
     temp_dest = Path('temp-diorisis')
-    download_and_un
+    download_and_unzip(url, temp_dest)
+    if os.path.isfile(temp_dest/'corpus.json'):
+   
