@@ -82,4 +82,5 @@ def convert_to_mlm_format(
     return mlm_sentences
 
 
-def download_diorisis(mlm_dest_dir: Path, pos_dest_
+def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
+    train_sentences,
