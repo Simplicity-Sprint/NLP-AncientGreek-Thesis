@@ -87,4 +87,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     train_labels, val_labels, test_labels = [], [], []
     random.seed(80085)
 
-    url = 'https://figshare.com/ndown
+    url = 'https://figshare.com/ndownloader/files/27831960'
+    temp_dest = Path('temp-diorisis')
+    download_and_un
