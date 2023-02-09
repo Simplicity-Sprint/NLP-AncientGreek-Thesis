@@ -91,4 +91,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     temp_dest = Path('temp-diorisis')
     download_and_unzip(url, temp_dest)
     if os.path.isfile(temp_dest/'corpus.json'):
-   
+        os.unlink(temp_dest/'corpus.json')
+
+    num_invalid_sentences =
