@@ -96,4 +96,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     num_invalid_sentences = 0
 
     # get all the JSON files with data and loop through them
-    json_f
+    json_files = sorted(list(temp_dest.glob('*.json')))
+    for json_file
