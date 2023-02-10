@@ -108,4 +108,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
         for sentence in contents['sentences']:
             sentence_text, sentence_pos_tags = get_tokens_and_pos_tags(sentence)
             if len(sentence_text) == 0:
-              
+                num_invalid_sentences += 1
+                continue
+
+       
