@@ -104,4 +104,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
             contents = json.load(fp)
 
         # for each sentence, get the sub-words and tags and add them to the data
-        doc
+        doc_sentences, doc_pos_tags = [], []
+        for sentence in contents['sen
