@@ -105,4 +105,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
 
         # for each sentence, get the sub-words and tags and add them to the data
         doc_sentences, doc_pos_tags = [], []
-        for sentence in contents['sen
+        for sentence in contents['sentences']:
+            sentence_text, sentence_pos_tags = get_tokens_and_pos
