@@ -100,4 +100,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     for json_file in tqdm(json_files, desc='Processing Diorisis Data'):
 
         # read the contents of the JSON file
-        with open(json_file, 'r
+        with open(json_file, 'r') as fp:
+            contents = json.load(fp)
+
+        # for each sent
