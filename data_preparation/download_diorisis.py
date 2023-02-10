@@ -97,4 +97,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
 
     # get all the JSON files with data and loop through them
     json_files = sorted(list(temp_dest.glob('*.json')))
-    for json_file
+    for json_file in tqdm(json_files, desc='Processing Diorisis Data'):
+
+        # r
