@@ -93,4 +93,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     if os.path.isfile(temp_dest/'corpus.json'):
         os.unlink(temp_dest/'corpus.json')
 
-    num_invalid_sentences =
+    num_invalid_sentences = 0
+
+    # get all the JSON files with data and loop through them
+    json_f
