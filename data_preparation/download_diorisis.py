@@ -112,4 +112,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
                 continue
 
             # for some reason, diorisis ends sentences at semicolons,
-   
+            #  but we don't want that, so concatenate the current sentence
+            #
