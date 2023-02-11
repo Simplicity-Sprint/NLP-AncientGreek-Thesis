@@ -111,4 +111,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
                 num_invalid_sentences += 1
                 continue
 
-       
+            # for some reason, diorisis ends sentences at semicolons,
+   
