@@ -116,4 +116,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
             #  to the previous if the previous ends with a semicolon (·)
             if len(doc_sentences) > 0 and doc_sentences[-1][-1] == '·':
                 doc_sentences[-1] += sentence_text
-                doc_pos_
+                doc_pos_tags[-1] += sentence_pos_tags
+            else:
+                doc_sentenc
