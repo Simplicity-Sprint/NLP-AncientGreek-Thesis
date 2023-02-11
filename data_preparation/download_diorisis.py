@@ -121,4 +121,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
                 doc_sentences.append(sentence_text)
                 doc_pos_tags.append(sentence_pos_tags)
 
-        # decide whether this document will be included (t
+        # decide whether this document will be included (train/val/test)
+        prob = random.uniform(0, 1)
+
+     
