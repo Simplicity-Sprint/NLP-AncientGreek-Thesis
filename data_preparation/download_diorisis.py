@@ -124,4 +124,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
         # decide whether this document will be included (train/val/test)
         prob = random.uniform(0, 1)
 
-     
+        # 95 - 2.5 - 2.5 split (almost, because different documents
+       
