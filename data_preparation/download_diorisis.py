@@ -130,4 +130,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
             train_sentences.append(doc_sentences)
             train_labels.append(doc_pos_tags)
         elif prob < 0.975:
-            val_sentences.append(d
+            val_sentences.append(doc_sentences)
+            val_labels.append(doc_pos_tags)
+        else:
+      
