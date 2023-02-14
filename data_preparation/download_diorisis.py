@@ -128,4 +128,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
         # contain different number of sentences)
         if prob < 0.95:
             train_sentences.append(doc_sentences)
-            train_labels.append(doc_pos_
+            train_labels.append(doc_pos_tags)
+        elif prob < 0.975:
+            val_sentences.append(d
