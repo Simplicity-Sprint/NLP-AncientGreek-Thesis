@@ -140,4 +140,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     print(f'Number of invalid sentences: {num_invalid_sentences}')
     print()
 
-    # p
+    # preprocess them a bit in order to be used also as MLM data
+    tra
