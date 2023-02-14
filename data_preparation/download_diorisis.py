@@ -133,4 +133,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
             val_sentences.append(doc_sentences)
             val_labels.append(doc_pos_tags)
         else:
-      
+            test_sentences.append(doc_sentences)
+            test_lab
