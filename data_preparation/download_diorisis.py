@@ -141,4 +141,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     print()
 
     # preprocess them a bit in order to be used also as MLM data
-    tra
+    train_mlm_sentences = convert_to_mlm_format(train_sentences, train_labels)
+  
