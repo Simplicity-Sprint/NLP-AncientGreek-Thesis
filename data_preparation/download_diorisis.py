@@ -137,4 +137,7 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
             test_labels.append(doc_pos_tags)
 
     print()
-    print(f'Number of inva
+    print(f'Number of invalid sentences: {num_invalid_sentences}')
+    print()
+
+    # p
