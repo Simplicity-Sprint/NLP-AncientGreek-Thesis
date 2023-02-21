@@ -146,4 +146,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     test_mlm_sentences = convert_to_mlm_format(test_sentences, test_labels)
 
     # save MLM data
-    print_stats_and_save(train_mlm_senten
+    print_stats_and_save(train_mlm_sentences, val_mlm_sentences,
+                         
