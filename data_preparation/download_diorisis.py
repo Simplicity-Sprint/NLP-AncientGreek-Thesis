@@ -151,4 +151,4 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
                          name='diorisis')
 
     print()
-    print(f'Nu
+    print(f'Number of train tags: {sum(map(len, train_labels))}'
