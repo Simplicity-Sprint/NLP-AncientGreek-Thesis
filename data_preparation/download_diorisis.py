@@ -158,4 +158,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     # save POS data
     save_pickle(pos_dest_dir/'train'/'diorisis-train-sentences.pkl',
                 train_sentences)
-    save_pickle(pos_dest_di
+    save_pickle(pos_dest_dir/'train'/'diorisis-train-labels.pkl', train_labels)
+
+    save_pickle(p
