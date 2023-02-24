@@ -165,4 +165,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
 
     save_pickle(pos_dest_dir/'test'/'diorisis-test-sentences.pkl',
                 test_sentences)
-    save_pickle(pos_dest_dir/'test'/'diorisis-test-labels.p
+    save_pickle(pos_dest_dir/'test'/'diorisis-test-labels.pkl', test_labels)
+
+    # remove the temporary directory with the downloaded data
