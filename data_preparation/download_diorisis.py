@@ -164,4 +164,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     save_pickle(pos_dest_dir/'val'/'diorisis-val-labels.pkl', val_labels)
 
     save_pickle(pos_dest_dir/'test'/'diorisis-test-sentences.pkl',
-                t
+                test_sentences)
+    save_pickle(pos_dest_dir/'test'/'diorisis-test-labels.p
