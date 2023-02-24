@@ -156,4 +156,6 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     print(f'Number of test tags: {sum(map(len, test_labels))}')
 
     # save POS data
-    save_pickle(pos_dest_dir/'train'/'diorisis-train
+    save_pickle(pos_dest_dir/'train'/'diorisis-train-sentences.pkl',
+                train_sentences)
+    save_pickle(pos_dest_di
