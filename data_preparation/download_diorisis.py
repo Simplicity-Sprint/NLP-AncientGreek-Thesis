@@ -179,4 +179,6 @@ if __name__ == "__main__":
 
     os.makedirs(POS_TARGET_DIR/'train', exist_ok=True)
     os.makedirs(POS_TARGET_DIR/'val', exist_ok=True)
-    os.makedirs(POS_T
+    os.makedirs(POS_TARGET_DIR/'test', exist_ok=True)
+
+    download_diorisis(
