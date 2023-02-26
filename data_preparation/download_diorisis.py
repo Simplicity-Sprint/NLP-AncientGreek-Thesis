@@ -168,3 +168,9 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
     save_pickle(pos_dest_dir/'test'/'diorisis-test-labels.pkl', test_labels)
 
     # remove the temporary directory with the downloaded data
+    shutil.rmtree(temp_dest)
+
+
+if __name__ == "__main__":
+
+    os.makedirs(
