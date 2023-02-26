@@ -178,3 +178,5 @@ if __name__ == "__main__":
     os.makedirs(MLM_TARGET_DIR/'test', exist_ok=True)
 
     os.makedirs(POS_TARGET_DIR/'train', exist_ok=True)
+    os.makedirs(POS_TARGET_DIR/'val', exist_ok=True)
+    os.makedirs(POS_T
