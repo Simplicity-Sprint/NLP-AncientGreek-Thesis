@@ -181,4 +181,4 @@ if __name__ == "__main__":
     os.makedirs(POS_TARGET_DIR/'val', exist_ok=True)
     os.makedirs(POS_TARGET_DIR/'test', exist_ok=True)
 
-    download_diorisis(
+    download_diorisis(MLM_TARGET_DIR, POS_TARGET_DIR)
