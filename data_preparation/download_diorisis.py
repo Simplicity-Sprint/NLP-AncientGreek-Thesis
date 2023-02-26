@@ -174,4 +174,5 @@ def download_diorisis(mlm_dest_dir: Path, pos_dest_dir: Path) -> None:
 if __name__ == "__main__":
 
     os.makedirs(MLM_TARGET_DIR/'train', exist_ok=True)
-    os.makedirs(MLM_TARGE
+    os.makedirs(MLM_TARGET_DIR/'val', exist_ok=True)
+    os.makedirs(MLM_TARGET_DIR/'test', exi
