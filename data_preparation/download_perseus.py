@@ -6,4 +6,8 @@ https://github.com/brennannicholson/ancient-greek-char-bert/blob/master/data_pre
 
 import os
 import re
-import rand
+import random
+import shutil
+
+from pathlib import Path
+from tqdm.
