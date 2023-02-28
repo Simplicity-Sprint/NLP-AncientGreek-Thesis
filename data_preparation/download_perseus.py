@@ -10,4 +10,7 @@ import random
 import shutil
 
 from pathlib import Path
-from tqdm.
+from tqdm.auto import tqdm
+from bs4 import BeautifulSoup
+
+from data_preparatio
