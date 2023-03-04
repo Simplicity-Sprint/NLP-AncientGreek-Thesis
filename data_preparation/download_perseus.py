@@ -22,4 +22,4 @@ from data_preparation.data_prep_utils import (
 )
 from data_preparation.download_all import MLM_TARGET_DIR
 
-# e
+# exclude Bacchylides' Odes due to the fragmentary nature of the tex
