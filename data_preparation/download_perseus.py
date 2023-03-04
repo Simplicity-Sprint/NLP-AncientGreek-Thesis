@@ -22,4 +22,7 @@ from data_preparation.data_prep_utils import (
 )
 from data_preparation.download_all import MLM_TARGET_DIR
 
-# exclude Bacchylides' Odes due to the fragmentary nature of the tex
+# exclude Bacchylides' Odes due to the fragmentary nature of the text
+BACHCHYLIDES_ODES = [
+    'tlg0199.tlg001.perseus-grc1.xml',
+   
