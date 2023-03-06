@@ -28,4 +28,5 @@ BACHCHYLIDES_ODES = [
     'tlg0199.tlg002.perseus-grc1.xml',
 ]
 
-TEXTS_WITH_SIGNIFICA
+TEXTS_WITH_SIGNIFICANT_OCR_ERRORS = [
+    'tlg3129.ogl001.1st1K-grc1.xml',  # In Cy
