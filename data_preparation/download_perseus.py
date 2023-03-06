@@ -33,4 +33,6 @@ TEXTS_WITH_SIGNIFICANT_OCR_ERRORS = [
 ]
 
 # ideally these should be automatically identified and converted
-# but CLTK's parser 
+# but CLTK's parser doesn't seem to work...
+BETA_CODE_FILES = [
+    'tlg2003.t
