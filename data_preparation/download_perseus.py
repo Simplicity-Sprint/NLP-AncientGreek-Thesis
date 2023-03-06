@@ -35,4 +35,5 @@ TEXTS_WITH_SIGNIFICANT_OCR_ERRORS = [
 # ideally these should be automatically identified and converted
 # but CLTK's parser doesn't seem to work...
 BETA_CODE_FILES = [
-    'tlg2003.t
+    'tlg2003.tlg002.perseus-grc1.xml',
+    'tlg2003.tlg010.perseus-grc1.xml',
