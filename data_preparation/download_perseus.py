@@ -29,4 +29,7 @@ BACHCHYLIDES_ODES = [
 ]
 
 TEXTS_WITH_SIGNIFICANT_OCR_ERRORS = [
-    'tlg3129.ogl001.1st1K-grc1.xml',  # In Cy
+    'tlg3129.ogl001.1st1K-grc1.xml',  # In Cyrilli In XII Prophetas Theophylacti
+]
+
+# ideally these s
