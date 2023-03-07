@@ -37,3 +37,5 @@ TEXTS_WITH_SIGNIFICANT_OCR_ERRORS = [
 BETA_CODE_FILES = [
     'tlg2003.tlg002.perseus-grc1.xml',
     'tlg2003.tlg010.perseus-grc1.xml',
+    'tlg2003.tlg007.perseus-grc1.xml',
+    'tlg2003.tlg009.perseus-grc1.
