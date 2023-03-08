@@ -49,4 +49,6 @@ BETA_CODE_FILES = [
     'tlg2003.tlg006.perseus-grc1.xml',
 ]
 
-FILES_CAU
+FILES_CAUSING_PARSING_ERRORS = [
+    'tlg2003.tlg013.perseus-grc1.xml',
+    'tlg2003.
