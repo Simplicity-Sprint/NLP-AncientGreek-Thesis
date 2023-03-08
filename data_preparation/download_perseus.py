@@ -43,4 +43,6 @@ BETA_CODE_FILES = [
     'tlg2003.tlg012.perseus-grc1.xml',
     'tlg2003.tlg008.perseus-grc1.xml',
     'tlg2003.tlg005.perseus-grc1.xml',
-    'tlg2003.tlg011.perseus-gr
+    'tlg2003.tlg011.perseus-grc1.xml',
+    'tlg2003.tlg001.perseus-grc1.xml',
+    'tlg2003.tlg003
