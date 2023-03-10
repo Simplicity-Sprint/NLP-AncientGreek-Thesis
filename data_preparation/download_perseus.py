@@ -65,4 +65,6 @@ FILES_CAUSING_PARSING_ERRORS = [
     'tlg0019.tlg007.perseus-grc1.xml',
     'tlg0284.tlg029.perseus-grc1.xml',
     'tlg0284.tlg026.perseus-grc1.xml',
-    'tlg0284.tlg046.perse
+    'tlg0284.tlg046.perseus-grc1.xml',
+    'tlg0284.tlg045.perseus-grc1.xml',
+    'tlg0284.tl
