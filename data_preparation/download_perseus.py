@@ -87,4 +87,7 @@ def parse_xml(fp):
     """Parses a Perseus XML file. The approach here is very rough. Ideally the
         nodes should be traversed and those containing a significant amount of
         non-greek characters removed
-        (see: https://github.com/ThomasK81/TE
+        (see: https://github.com/ThomasK81/TEItoCEX)"""
+    soup = BeautifulSoup(fp, 'xml')
+    # remote 'note' tags
+ 
