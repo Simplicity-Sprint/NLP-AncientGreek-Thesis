@@ -90,4 +90,5 @@ def parse_xml(fp):
         (see: https://github.com/ThomasK81/TEItoCEX)"""
     soup = BeautifulSoup(fp, 'xml')
     # remote 'note' tags
- 
+    for note_tag in soup.find_all('note'):
+        note_tag.dec
