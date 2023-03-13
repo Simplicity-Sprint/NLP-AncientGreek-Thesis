@@ -86,4 +86,5 @@ PERSEUS_FILES_TO_EXCLUDE = (
 def parse_xml(fp):
     """Parses a Perseus XML file. The approach here is very rough. Ideally the
         nodes should be traversed and those containing a significant amount of
-        non-greek char
+        non-greek characters removed
+        (see: https://github.com/ThomasK81/TE
