@@ -91,4 +91,6 @@ def parse_xml(fp):
     soup = BeautifulSoup(fp, 'xml')
     # remote 'note' tags
     for note_tag in soup.find_all('note'):
-        note_tag.dec
+        note_tag.decompose()
+    assert len(list(soup.find_all('note'))) == 0
+    # get all remaining
