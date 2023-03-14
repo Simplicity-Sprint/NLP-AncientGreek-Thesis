@@ -102,4 +102,5 @@ def parse_perseus_xml(files):
     """Parses the given XML files. Returns the parsed files as well as a list
         of files which couldn't be parsed at all."""
     raw_texts = []
-    failed_to_p
+    failed_to_parse = []
+    for filename in tqdm(files, desc='Parsing Pers
