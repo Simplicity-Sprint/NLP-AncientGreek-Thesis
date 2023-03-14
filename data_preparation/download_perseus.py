@@ -103,4 +103,6 @@ def parse_perseus_xml(files):
         of files which couldn't be parsed at all."""
     raw_texts = []
     failed_to_parse = []
-    for filename in tqdm(files, desc='Parsing Pers
+    for filename in tqdm(files, desc='Parsing Perseus Data'):
+        with open(filename) as fp:
+            raw_text
