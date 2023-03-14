@@ -99,4 +99,5 @@ def parse_xml(fp):
 
 
 def parse_perseus_xml(files):
-    """Parses the given XML files. Returns th
+    """Parses the given XML files. Returns the parsed files as well as a list
+        of files which couldn't 
