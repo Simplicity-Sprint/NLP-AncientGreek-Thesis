@@ -93,4 +93,8 @@ def parse_xml(fp):
     for note_tag in soup.find_all('note'):
         note_tag.decompose()
     assert len(list(soup.find_all('note'))) == 0
-    # get all remaining
+    # get all remaining text
+    raw_text = soup.find('text').get_text()
+    return raw_text
+
+
