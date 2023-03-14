@@ -100,4 +100,6 @@ def parse_xml(fp):
 
 def parse_perseus_xml(files):
     """Parses the given XML files. Returns the parsed files as well as a list
-        of files which couldn't 
+        of files which couldn't be parsed at all."""
+    raw_texts = []
+    failed_to_p
