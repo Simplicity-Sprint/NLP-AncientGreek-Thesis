@@ -105,4 +105,6 @@ def parse_perseus_xml(files):
     failed_to_parse = []
     for filename in tqdm(files, desc='Parsing Perseus Data'):
         with open(filename) as fp:
-            raw_text
+            raw_text = parse_xml(fp)
+        if not raw_text:
+            failed_t
