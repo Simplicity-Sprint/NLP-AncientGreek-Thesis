@@ -98,3 +98,5 @@ def parse_xml(fp):
     return raw_text
 
 
+def parse_perseus_xml(files):
+    """Parses the given XML files. Returns th
