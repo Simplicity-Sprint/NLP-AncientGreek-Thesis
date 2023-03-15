@@ -117,4 +117,7 @@ def download_perseus(dest_dir: Path):
 
     # download the repo
     perseus_repo = 'https://github.com/PerseusDL/canonical-greekLit'
-    download_git_repo(perseus_r
+    download_git_repo(perseus_repo, 'master')
+    perseus_data_dir = Path('canonical-greekLit')/'data'
+
+ 
