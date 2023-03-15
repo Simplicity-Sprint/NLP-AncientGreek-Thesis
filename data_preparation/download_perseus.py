@@ -120,4 +120,4 @@ def download_perseus(dest_dir: Path):
     download_git_repo(perseus_repo, 'master')
     perseus_data_dir = Path('canonical-greekLit')/'data'
 
- 
+    # get the files with ancient greek text from the repo
