@@ -109,4 +109,8 @@ def parse_perseus_xml(files):
         if not raw_text:
             failed_to_parse.append(filename)
         else:
-            raw_texts.append(raw_t
+            raw_texts.append(raw_text)
+    return raw_texts, failed_to_parse
+
+
+def download_perseus(dest_dir: Path
