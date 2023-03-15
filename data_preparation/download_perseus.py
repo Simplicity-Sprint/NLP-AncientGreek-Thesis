@@ -116,4 +116,5 @@ def parse_perseus_xml(files):
 def download_perseus(dest_dir: Path):
 
     # download the repo
-    perseus_repo = 'https://github.co
+    perseus_repo = 'https://github.com/PerseusDL/canonical-greekLit'
+    download_git_repo(perseus_r
