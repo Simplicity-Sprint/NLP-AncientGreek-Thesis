@@ -113,4 +113,7 @@ def parse_perseus_xml(files):
     return raw_texts, failed_to_parse
 
 
-def download_perseus(dest_dir: Path
+def download_perseus(dest_dir: Path):
+
+    # download the repo
+    perseus_repo = 'https://github.co
