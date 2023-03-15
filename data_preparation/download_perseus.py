@@ -107,4 +107,6 @@ def parse_perseus_xml(files):
         with open(filename) as fp:
             raw_text = parse_xml(fp)
         if not raw_text:
-            failed_t
+            failed_to_parse.append(filename)
+        else:
+            raw_texts.append(raw_t
