@@ -121,3 +121,5 @@ def download_perseus(dest_dir: Path):
     perseus_data_dir = Path('canonical-greekLit')/'data'
 
     # get the files with ancient greek text from the repo
+    perseus_regex = re.compile(r'grc[0-9]*\.xml$')
+    perseus_files = get_
