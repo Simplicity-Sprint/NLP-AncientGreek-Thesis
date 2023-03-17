@@ -130,4 +130,5 @@ def download_perseus(dest_dir: Path):
     # clean them, as much as possible
     perseus_data = clean_texts(perseus_raw_texts)
 
-    # apply the standar
+    # apply the standard cleaning and assign it to a dataset
+    random.seed(8
