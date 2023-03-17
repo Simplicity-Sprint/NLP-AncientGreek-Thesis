@@ -126,4 +126,6 @@ def download_perseus(dest_dir: Path):
                               PERSEUS_FILES_TO_EXCLUDE)
 
     # parse them
-    perseus_raw_texts, _ = parse_perseus
+    perseus_raw_texts, _ = parse_perseus_xml(perseus_files)
+    # clean them, as much as possible
+    perseu
