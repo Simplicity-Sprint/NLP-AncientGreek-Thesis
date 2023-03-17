@@ -128,4 +128,6 @@ def download_perseus(dest_dir: Path):
     # parse them
     perseus_raw_texts, _ = parse_perseus_xml(perseus_files)
     # clean them, as much as possible
-    perseu
+    perseus_data = clean_texts(perseus_raw_texts)
+
+    # apply the standar
