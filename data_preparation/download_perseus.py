@@ -132,4 +132,7 @@ def download_perseus(dest_dir: Path):
 
     # apply the standard cleaning and assign it to a dataset
     random.seed(80085)
-    data = split_texts(perseus_data, train_fracti
+    data = split_texts(perseus_data, train_fraction=0.95)
+
+    # save the MLM data
+    print_stats_an
