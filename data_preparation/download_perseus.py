@@ -131,4 +131,5 @@ def download_perseus(dest_dir: Path):
     perseus_data = clean_texts(perseus_raw_texts)
 
     # apply the standard cleaning and assign it to a dataset
-    random.seed(8
+    random.seed(80085)
+    data = split_texts(perseus_data, train_fracti
