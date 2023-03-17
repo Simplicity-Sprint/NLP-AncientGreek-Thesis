@@ -135,4 +135,6 @@ def download_perseus(dest_dir: Path):
     data = split_texts(perseus_data, train_fraction=0.95)
 
     # save the MLM data
-    print_stats_an
+    print_stats_and_save(*data, dest_dir=dest_dir, name='perseus')
+
+    # remove the repo
