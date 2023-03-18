@@ -138,3 +138,7 @@ def download_perseus(dest_dir: Path):
     print_stats_and_save(*data, dest_dir=dest_dir, name='perseus')
 
     # remove the repo
+    shutil.rmtree(perseus_data_dir.parent)
+
+
+if __name__ == "__main__":
