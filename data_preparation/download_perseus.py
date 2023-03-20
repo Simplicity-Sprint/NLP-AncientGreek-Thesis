@@ -142,3 +142,6 @@ def download_perseus(dest_dir: Path):
 
 
 if __name__ == "__main__":
+
+    os.makedirs(MLM_TARGET_DIR/'train', exist_ok=True)
+    os.make
