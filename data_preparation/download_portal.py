@@ -65,3 +65,45 @@ def download_portal(dest_dir: Path):
         author_href = result.find('a')['href']
         author_url = urljoin(root_url, author_href)
         author_html = requests.get(author_url).text
+
+        soup2 = BeautifulSoup(author_html, 'lxml')
+        author_stuff = soup2.find('div', {'class': 'height'})
+
+        # skip first ul because it contains anchors to other uls
+        for idx, ul in enumerate(author_stuff.findAll('ul')[1:]):
+            for li in ul.findAll('li'):
+
+                a = li.find('a')
+                text_href = a['href']
+                text_url = urljoin(author_url, text_href)
+                text_html = requests.get(text_url).text
+                soup3 = BeautifulSoup(text_html, 'lxml')
+
+                # skip first 2 because they are useless
+                text_sentences = []
+                for paragraph in soup3.findAll('p')[2:]:
+                    clean_text = clean_raw_text(preprocess(paragraph.text))
+                    paragraph_sentences = get_sentences(clean_text)
+                    text_sentences += paragraph_sentences
+
+                # 90 - 5 - 5 split
+                prob = random.uniform(0, 1)
+                if prob < 0.9:
+                    train_sentences.append(text_sentences)
+                elif prob < 0.95:
+                    val_sentences.append(text_sentences)
+                else:
+                    test_sentences.append(text_sentences)
+
+    # save the MLM data
+    print_stats_and_save(train_sentences, val_sentences, test_sentences,
+                         dest_dir=dest_dir, name='portal')
+
+
+if __name__ == "__main__":
+
+    os.makedirs(MLM_TARGET_DIR/'train', exist_ok=True)
+    os.makedirs(MLM_TARGET_DIR/'val', exist_ok=True)
+    os.makedirs(MLM_TARGET_DIR/'test', exist_ok=True)
+
+    download_portal(MLM_TARGET_DIR)
