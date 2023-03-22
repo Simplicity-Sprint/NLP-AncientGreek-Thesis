@@ -102,3 +102,80 @@ def main(args: argparse.Namespace):
         'decay-lr-at-percentage-of-steps': 0.1,
         'train-epochs': 5
     }
+
+    # either use those or load ones from a configuration file
+    hyperparams = custom_hyperparameters \
+        if args.config_path is None \
+        else hyperparams_from_config(args.config_path)
+
+    # load the tokenizer
+    tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
+
+    # create datasets
+    data_dir = PROCESSED_DATA_PATH/'PoS'
+    train_dataset = PoSDataset(
+        tokenizer=tokenizer,
+        input_ids_path=data_dir/'pos-train-input-ids.pkl',
+        labels_path=data_dir/'pos-train-labels.pkl',
+        le_path=LABEL_ENCODER_PATH,
+        maxlen=hyperparams['max-length']
+    )
+    val_dataset = PoSDataset(
+        tokenizer=tokenizer,
+        input_ids_path=data_dir/'pos-val-input-ids.pkl',
+        labels_path=data_dir/'pos-val-labels.pkl',
+        le_path=LABEL_ENCODER_PATH,
+        maxlen=hyperparams['max-length']
+    )
+    test_dataset = PoSDataset(
+        tokenizer=tokenizer,
+        input_ids_path=data_dir/'pos-test-input-ids.pkl',
+        labels_path=data_dir/'pos-test-labels.pkl',
+        le_path=LABEL_ENCODER_PATH,
+        maxlen=hyperparams['max-length']
+    )
+
+    # train args
+    training_args = TrainingArguments(
+        output_dir=args.savedir,
+        overwrite_output_dir=True,
+        evaluation_strategy=IntervalStrategy.EPOCH,
+        prediction_loss_only=False,
+        per_device_train_batch_size=hyperparams['batch-size'],
+        per_device_eval_batch_size=hyperparams['batch-size'],
+        learning_rate=hyperparams['learning-rate'],
+        weight_decay=hyperparams['weight-decay'],
+        adam_beta1=0.9,
+        adam_beta2=0.98,
+        adam_epsilon=1e-6,
+        max_grad_norm=1,
+        num_train_epochs=hyperparams['train-epochs'],
+        lr_scheduler_type=SchedulerType.LINEAR,
+        warmup_ratio=hyperparams['decay-lr-at-percentage-of-steps'],
+        log_level='passive',
+        logging_dir=args.logdir,
+        logging_strategy=IntervalStrategy.STEPS,
+        logging_first_step=True,
+        logging_steps=1,
+        save_strategy=IntervalStrategy.EPOCH,
+        save_total_limit=1,
+        no_cuda=args.no_cuda,
+        seed=seed,
+        local_rank=-1,
+        dataloader_drop_last=False,
+        dataloader_num_workers=1,
+        optim=OptimizerNames.ADAMW_TORCH,
+        group_by_length=False,
+        ddp_find_unused_parameters=False,
+        dataloader_pin_memory=True,
+        skip_memory_metrics=True
+    )
+
+    # define a function that return the logits/labels without padding entries
+    def unpad(labels_: torch.Tensor, preds_: torch.Tensor) -> \
+            Tuple[torch.Tensor, torch.Tensor]:
+        """Removes values where the label is -100 and returns both Tensors."""
+        valid_indices = labels_ != -100
+        return labels_[valid_indices], preds_[valid_indices]
+
+    # define the metrics used (accuracy and F1)
