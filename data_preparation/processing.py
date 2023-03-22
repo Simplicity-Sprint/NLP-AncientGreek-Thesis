@@ -101,3 +101,83 @@ def convert_data_to_mlm_format(max_length: int = 512):
     def transform_and_save_texts(files: List[Path], prefix: str) -> None:
         data = []
         for file in files:
+            data += encode_sentences_of_file(file)
+        with open(PROCESSED_DATA_PATH/'MLM'/f'{prefix}-data.pkl', 'wb') as fp:
+            pickle.dump(data, fp)
+
+    # transform and save the train/val/test texts to input IDs
+    transform_and_save_texts(train_files, 'train')
+    transform_and_save_texts(val_files, 'val')
+    transform_and_save_texts(test_files, 'test')
+
+
+def convert_data_to_pos_format():
+    # ensure the processed PoS data directory is empty
+    if os.path.isdir(PROCESSED_DATA_PATH/'PoS'):
+        shutil.rmtree(PROCESSED_DATA_PATH/'PoS')
+    os.makedirs(PROCESSED_DATA_PATH/'PoS')
+
+    # load the label encoder and the tokenizer
+    le = LabelEncoder()
+    tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
+
+    def create_pos_data(
+            sentences: List[List[str]],
+            pos_tags: List[List[str]]
+    ) -> Tuple[List[List[int]], List[List[int]]]:
+        # lists to be returned
+        input_ids, labels = [], []
+
+        # iterate over all the sentences of the PoS Dataset
+        loop = tqdm(zip(sentences, pos_tags), total=len(sentences),
+                    desc='Preprocessing')
+        for sentence, tags in loop:
+
+            # initialize the input ID, label for the current sentence
+            #  note that Cross-Entropy-Loss by default ignores index -100
+            sentence_input_ids = [tokenizer.bos_token_id]
+            sentence_labels = [-100]
+
+            # convert each token of the sentence to its ID and get the label(s)
+            for token, tag in zip(sentence, tags):
+                ids = tokenizer(token)['input_ids'][1:-1]
+                tag = le.transform([tag])[0]
+                sentence_input_ids += ids
+                # if a word is split in many sub-words, keep the original label
+                #  only for the last sub-word, and use -100 for the others
+                if len(ids) > 1:
+                    sentence_labels += [-100] * (len(ids) - 1)
+                sentence_labels.append(tag)
+
+            # truncate long sentences
+            sentence_input_ids = sentence_input_ids[:511]
+            sentence_labels = sentence_labels[:511]
+
+            # add bos token
+            sentence_input_ids.append(tokenizer.eos_token_id)
+            sentence_labels.append(-100)
+
+            # add to final lists
+            input_ids.append(sentence_input_ids)
+            labels.append(sentence_labels)
+
+        return input_ids, labels
+
+    def load_pos_data(prefix: str) -> Tuple[List[str], List[str]]:
+        root_dir = POS_TARGET_DIR/prefix
+        with open(root_dir/f'diorisis-{prefix}-sentences.pkl', 'rb') as fp_:
+            sentences = pickle.load(fp_)
+        sentences = [sentence for doc in sentences for sentence in doc]
+        with open(root_dir/f'diorisis-{prefix}-labels.pkl', 'rb') as fp_:
+            pos_tags = pickle.load(fp_)
+        pos_tags = [label for doc in pos_tags for label in doc]
+        return sentences, pos_tags
+
+    def save_pos_data(data: Tuple[List[str], List[str]], prefix: str) -> None:
+        input_ids, labels = create_pos_data(*data)
+        root_dir = PROCESSED_DATA_PATH/'PoS'
+        with open(root_dir/f'pos-{prefix}-input-ids.pkl', 'wb') as fp_:
+            pickle.dump(input_ids, fp_)
+        with open(root_dir/f'pos-{prefix}-labels.pkl', 'wb') as fp_:
+            pickle.dump(labels, fp_)
+        print(f'Successfully saved the {prefix} data.')
