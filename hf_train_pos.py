@@ -179,3 +179,56 @@ def main(args: argparse.Namespace):
         return labels_[valid_indices], preds_[valid_indices]
 
     # define the metrics used (accuracy and F1)
+    def compute_metrics(pred: EvalPrediction) -> Dict[str, float]:
+        """Computes some metrics given the predictions and labels, and returns
+            them in the dictionary so that they can be digested by the HF
+            Trainer API."""
+        labels_ = pred.label_ids.reshape(-1)
+        preds_ = pred.predictions.reshape(-1)
+        labels_, preds_ = unpad(labels_, preds_)
+
+        acc_ = accuracy_score(labels_, preds_)
+        f1_ = f1_score(labels_, preds_, average='weighted')
+        return {'accuracy': acc_, 'f1': f1_}
+
+    # train
+    trainer = CustomMetricsTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=val_dataset,
+        tokenizer=tokenizer,
+        compute_metrics=compute_metrics,
+        preprocess_logits_for_metrics=lambda logits, _: logits.argmax(-1)
+    )
+    trainer.train()
+
+    # get the test metrics
+    test_out = trainer.predict(test_dataset=test_dataset)
+
+    if args.confusion_matrix is not None:
+        labels = torch.from_numpy(test_out.label_ids)
+        preds = torch.from_numpy(test_out.predictions)
+        labels, preds = unpad(labels, preds)
+        classes = test_dataset.classnames
+        cm = ConfusionMatrix(num_classes=len(classes))(preds, labels)
+        plot_confusion_matrix(cm, classes, args.confusion_matrix)
+
+    test_loss, acc, f1 = (test_out.metrics['test_loss'],
+                          test_out.metrics['test_accuracy'],
+                          test_out.metrics['test_f1'])
+    print(f'Test Loss: {test_loss:.6f}\n'
+          f'Test Accuracy: {acc:.2f}\n'
+          f'Test weighted F1 score: {f1:.2f}')
+    test_metrics = (test_loss, acc, f1)
+
+    # save plots with losses if specified
+    if args.plot_savepath is not None:
+        plot_pos_metrics(args.logdir, args.plot_savepath,
+                         framework='hf', test_metrics=test_metrics)
+
+
+if __name__ == "__main__":
+    print()
+    arg = parse_hf_pos_input()
+    main(arg)
