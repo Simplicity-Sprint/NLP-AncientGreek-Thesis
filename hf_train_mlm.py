@@ -99,3 +99,49 @@ def main(args: argparse.Namespace):
         dataloader_num_workers=1,
         optim=OptimizerNames.ADAMW_TORCH,
         group_by_length=False,
+        ddp_find_unused_parameters=False,
+        dataloader_pin_memory=True,
+        skip_memory_metrics=True
+    )
+
+    # create the model
+    config = RobertaConfig(
+        vocab_size=tokenizer.vocab_size,
+        max_position_embeddings=hyperparams['max-length'] + 2,
+        hidden_size=hyperparams['hidden-size'],
+        num_attention_heads=hyperparams['num-attention-heads'],
+        num_hidden_layers=hyperparams['num-hidden-layers'],
+        type_vocab_size=hyperparams['type-vocab-size'],
+        bos_token_id=tokenizer.bos_token_id,
+        eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.pad_token_id
+    )
+    model = RobertaForMaskedLM(config).train()
+
+    # train
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        data_collator=data_collator,
+        train_dataset=train_dataset,
+        eval_dataset=val_dataset,
+        tokenizer=tokenizer,
+        preprocess_logits_for_metrics=lambda _, __: torch.Tensor([])
+    )
+    trainer.train()
+
+    # get the test loss
+    test_out = trainer.predict(test_dataset=test_dataset)
+    test_loss = test_out.metrics['test_loss']
+    print(f'Test Loss: {test_loss:.6f}')
+
+    # save plots with losses if specified
+    if args.plot_savepath is not None:
+        plot_mlm_losses(args.logdir, args.plot_savepath, framework='hf',
+                        test_loss=test_loss)
+
+
+if __name__ == "__main__":
+    print()
+    arg = parse_hf_mlm_input()
+    main(arg)
