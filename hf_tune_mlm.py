@@ -72,3 +72,75 @@ def main(args: argparse.Namespace):
             max_position_embeddings=constants['max-length'] + 2,
             hidden_size=int(hidden_size),
             num_attention_heads=int(trial['num-attention-heads']),
+            num_hidden_layers=int(trial['num-hidden-layers']),
+            type_vocab_size=constants['type-vocab-size'],
+            bos_token_id=tokenizer.bos_token_id,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.pad_token_id
+        )
+        model = RobertaForMaskedLM(config).train()
+        return model
+
+    # define the hyperparameter search space
+    def search_space(_: Optional[Any] = None) -> \
+            Dict[str, float]:
+        """Returns the ray tune search space used for hyperparameter search."""
+        return {
+            'hidden-size': tune.choice([256, 512, 768, 1024]),
+            'num-attention-heads': tune.quniform(2, 16, 1),
+            'num-hidden-layers': tune.quniform(2, 12, 1),
+            'per_device_train_batch_size': tune.choice([4, 8, 16, 32]),
+            'learning_rate': tune.loguniform(1e-6, 3e-4),
+            'weight_decay': tune.loguniform(1e-2, 1),
+            'seed': tune.choice([3, 13, 420, 3407, 80085])
+        }
+
+    # create datasets
+    data_dir = PROCESSED_DATA_PATH/'MLM'
+    train_dataset = AGHFMLMDataset(data_dir/'train-data.pkl')
+    val_dataset = AGHFMLMDataset(data_dir/'val-data.pkl')
+
+    # load the tokenizer and create the data collator
+    data_collator = DataCollatorForLanguageModeling(
+        tokenizer=tokenizer,
+        mlm=True,
+        mlm_probability=constants['mask-probability']
+    )
+
+    # train args
+    training_args = TrainingArguments(
+        output_dir=str(constants['output-dir']),
+        overwrite_output_dir=True,
+        evaluation_strategy=IntervalStrategy.EPOCH,
+        prediction_loss_only=False,
+        adam_beta1=0.9,
+        adam_beta2=0.98,
+        adam_epsilon=1e-6,
+        max_grad_norm=1,
+        num_train_epochs=constants['train-epochs'],
+        lr_scheduler_type=SchedulerType.LINEAR,
+        warmup_ratio=constants['decay-lr-at-percentage-of-steps'],
+        log_level='passive',
+        logging_strategy=IntervalStrategy.STEPS,
+        logging_first_step=True,
+        logging_steps=1,
+        save_strategy=IntervalStrategy.EPOCH,
+        save_total_limit=1,
+        no_cuda=False,
+        local_rank=-1,
+        dataloader_drop_last=False,
+        dataloader_num_workers=1,
+        optim=OptimizerNames.ADAMW_TORCH,
+        group_by_length=False,
+        ddp_find_unused_parameters=False,
+        dataloader_pin_memory=True,
+        skip_memory_metrics=True,
+        disable_tqdm=True
+    )
+
+    # create a Trainer object and perform hyperparameter search
+    trainer = Trainer(
+        model_init=model_init,
+        args=training_args,
+        data_collator=data_collator,
+        train_dataset=train_dataset,
