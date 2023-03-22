@@ -181,3 +181,34 @@ def convert_data_to_pos_format():
         with open(root_dir/f'pos-{prefix}-labels.pkl', 'wb') as fp_:
             pickle.dump(labels, fp_)
         print(f'Successfully saved the {prefix} data.')
+
+    # --------------------- train data --------------------- #
+    train_data = load_pos_data(prefix='train')
+
+    # fit label encoder with the PoS tags
+    all_classes = list(set([cls for tags in train_data[1] for cls in tags]))
+    le.fit(sorted(all_classes))
+
+    save_pos_data(train_data, prefix='train')
+
+    # --------------------- validation data --------------------- #
+    val_data = load_pos_data(prefix='val')
+    save_pos_data(val_data, prefix='val')
+
+    # --------------------- test data --------------------- #
+    test_data = load_pos_data(prefix='test')
+    save_pos_data(test_data, prefix='test')
+
+    # save the label encoder
+    with open(LABEL_ENCODER_PATH, 'wb') as fp:
+        pickle.dump(le, fp)
+
+
+def process_data():
+    train_and_save_tokenizer()
+    convert_data_to_mlm_format()
+    convert_data_to_pos_format()
+
+
+if __name__ == "__main__":
+    process_data()
