@@ -49,3 +49,76 @@ class LitRoBERTaMLM(pl.LightningModule):
         self.tokenizer = tokenizer
         self.train_ds, self.val_ds, self.test_ds = None, None, None
         self.train_data_path, self.val_data_path, self.test_data_path = paths
+        self.model = create_roberta_mlm_model(tokenizer, hyperparams)
+        self.hyperparams = hyperparams
+        self.val_criterion = torch.nn.CrossEntropyLoss(reduction='none')
+
+    def prepare_data(self) -> None:
+        pass
+
+    def setup(self, stage: Optional[str] = None) -> None:
+        """Set up the train/val/test datasets."""
+        self.train_ds = AGMLMDataset(
+            input_ids_path=self.train_data_path,
+            tokenizer=self.tokenizer,
+            mask_probability=self.hyperparams['mask-probability'],
+            max_length=self.hyperparams['max-length']
+        )
+        self.val_ds = AGMLMDataset(
+            input_ids_path=self.val_data_path,
+            tokenizer=self.tokenizer,
+            mask_probability=self.hyperparams['mask-probability'],
+            max_length=self.hyperparams['max-length']
+        )
+        self.test_ds = AGMLMDataset(
+            input_ids_path=self.test_data_path,
+            tokenizer=self.tokenizer,
+            mask_probability=self.hyperparams['mask-probability'],
+            max_length=self.hyperparams['max-length']
+        )
+
+    def forward(self, input_ids: torch.Tensor, attention_mask: torch.Tensor,
+                labels: torch.Tensor) -> MaskedLMOutput:
+        return self.model(input_ids, attention_mask=attention_mask,
+                          labels=labels)
+
+    def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) \
+            -> Dict[str, torch.Tensor]:
+        """Forward input through the model and returns the loss along with
+            logging information."""
+        outputs = self.forward(**batch)
+        loss = outputs.loss
+        self.log('train/batch_loss', loss.item())
+        return {'loss': loss}
+
+    def validation_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) \
+            -> Dict[str, torch.Tensor]:
+        """Computes the validation loss for the current batch and returns it."""
+        with torch.no_grad():
+            outputs = self.forward(**batch)
+        logits = outputs.logits.view(-1, self.model.config.vocab_size)
+        loss = self.val_criterion(logits, batch['labels'].view(-1))
+        return {'loss': loss}
+
+    def validation_epoch_end(self, outputs: List[Dict[str, torch.Tensor]]) \
+            -> Dict[str, float]:
+        """Computes the average validation loss and returns it along
+            with logging information."""
+        avg_val_loss = torch.cat([o['loss'] for o in outputs], 0).mean().item()
+        self.log('val/val_loss', avg_val_loss)
+        return {'loss': avg_val_loss}
+
+    def test_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) \
+            -> Dict[str, torch.Tensor]:
+        """Computes the test loss for the current batch and returns it."""
+        return self.validation_step(batch, batch_idx)
+
+    def test_epoch_end(self, outputs: List[Dict[str, torch.Tensor]]) \
+            -> Dict[str, float]:
+        """Computes the average test loss and returns it along
+            with logging information."""
+        avg_test_loss = torch.cat([o['loss'] for o in outputs], 0).mean().item()
+        self.log('test/test_loss', avg_test_loss)
+        return {'loss': avg_test_loss}
+
+    def train_dataloader(self) -> torch.utils.data.DataLoader:
