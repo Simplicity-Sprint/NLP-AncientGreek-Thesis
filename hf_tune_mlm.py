@@ -144,3 +144,27 @@ def main(args: argparse.Namespace):
         args=training_args,
         data_collator=data_collator,
         train_dataset=train_dataset,
+        eval_dataset=val_dataset,
+        tokenizer=tokenizer
+    )
+    # if no `compute_objective` function is provided, then the validation loss
+    #  is chosen by default as the objective
+    best_run = trainer.hyperparameter_search(
+        hp_space=search_space,
+        n_trials=args.max_evals,
+        direction='minimize',
+        backend=HPSearchBackend.RAY,
+        search_alg=HyperOptSearch(metric='objective', mode='min'),
+        scheduler=ASHAScheduler(metric='objective', mode='min'),
+        resources_per_trial=constants['resources-per-trial'],
+        local_dir=str(constants['local-dir']),
+        log_to_file=str(constants['tune-logfile'])
+    )
+    print(f'Best hyperparameter combination found: {best_run.hyperparameters}.'
+          f'\nValidation loss achieved: {best_run.objective}')
+
+
+if __name__ == "__main__":
+    print()
+    arg = parse_tune_mlm_input()
+    main(arg)
