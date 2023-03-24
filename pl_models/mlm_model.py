@@ -122,3 +122,58 @@ class LitRoBERTaMLM(pl.LightningModule):
         return {'loss': avg_test_loss}
 
     def train_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.train_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=True,
+            num_workers=1
+        )
+
+    def val_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.val_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=False,
+            num_workers=1
+        )
+
+    def test_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.test_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=False,
+            num_workers=1
+        )
+
+    def predict_dataloader(self) -> torch.utils.data.DataLoader:
+        return self.test_dataloader()
+
+    def configure_optimizers(self) -> Union[AdamW, Dict[
+        str, Union[AdamW, Dict[str, Union[ReduceLROnPlateau, str, int]]]]
+    ]:
+        """Return the optimizer and the learning rate scheduler
+            (if specified)."""
+        optimizer = AdamW(
+            params=self.model.parameters(),
+            lr=self.hyperparams['learning-rate'],
+            weight_decay=self.hyperparams['weight-decay']
+        )
+        if not self.hyperparams['use-lr-scheduler']:
+            return optimizer
+
+        scheduler = ReduceLROnPlateau(
+            optimizer=optimizer,
+            mode='min',
+            factor=self.hyperparams['scheduler-factor'],
+            patience=self.hyperparams['scheduler-patience'],
+            verbose=True
+        )
+        return {
+            'optimizer': optimizer,
+            'lr_scheduler': {
+                'scheduler': scheduler,
+                'monitor': 'train/batch_loss',
+                'interval': 'step',
+                'frequency': self.hyperparams['scheduler-step-update']
+            }
+        }
