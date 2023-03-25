@@ -146,3 +146,65 @@ class PoSRoBERTa(pl.LightningModule):
         test_loss = torch.cat([o['loss'] for o in outputs], 0).mean().item()
         all_labels = torch.cat([o['labels'] for o in outputs], dim=0)
         all_preds = torch.cat([o['pred_labels'] for o in outputs], dim=0)
+        acc = self.acc(all_preds, all_labels)
+        f1 = self.f1(all_preds, all_labels)
+
+        self.log('test/test_loss', test_loss)
+        self.log('test/test_acc', acc)
+        self.log('test/test_f1', f1)
+
+        cm = self.cm(all_preds, all_labels)
+        classes = self.test_ds.classnames
+        plot_confusion_matrix(cm, classes, self.test_cm_path)
+
+        return {'loss': test_loss, 'acc': acc, 'f1': f1}
+
+    def train_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.train_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=True,
+            num_workers=1
+        )
+
+    def val_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.val_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=False,
+            num_workers=1
+        )
+
+    def test_dataloader(self) -> torch.utils.data.DataLoader:
+        return torch.utils.data.DataLoader(
+            dataset=self.test_ds,
+            batch_size=self.hyperparams['batch-size'],
+            shuffle=False,
+            num_workers=1
+        )
+
+    def predict_dataloader(self) -> torch.utils.data.DataLoader:
+        return self.test_dataloader()
+
+    def configure_optimizers(self) -> Union[AdamW, Dict[
+        str, Union[AdamW, Dict[str, Union[ReduceLROnPlateau, str, int]]]]
+    ]:
+        """Return the optimizer and the learning rate scheduler (if used)."""
+        optimizer = AdamW(
+            params=self.model.parameters(),
+            lr=self.hyperparams['learning-rate'],
+            weight_decay=self.hyperparams['weight-decay']
+        )
+        if not self.hyperparams['use-lr-scheduler']:
+            return optimizer
+
+        scheduler = ReduceLROnPlateau(
+            optimizer=optimizer,
+            mode='min',
+            factor=self.hyperparams['scheduler-factor'],
+            patience=self.hyperparams['scheduler-patience'],
+            verbose=True
+        )
+        return {
+            'optimizer': optimizer,
+            'lr_scheduler': {
