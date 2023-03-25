@@ -79,3 +79,70 @@ class PoSRoBERTa(pl.LightningModule):
     def forward(self, input_ids: torch.Tensor, attention_mask: torch.Tensor,
                 labels: torch.Tensor) -> MaskedLMOutput:
         return self.model(input_ids, attention_mask=attention_mask,
+                          labels=labels)
+
+    def training_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) \
+            -> Dict[str, torch.Tensor]:
+        outputs = self.forward(**batch)
+        loss = outputs.loss
+        logits = outputs.logits.view(-1, self.num_classes)
+
+        labels = batch['labels'].view(-1)
+        pred_labels = torch.argmax(logits, dim=1)
+
+        valid_indices = labels != -100
+        labels = labels[valid_indices]
+        pred_labels = pred_labels[valid_indices]
+
+        acc = self.acc(pred_labels, labels)
+        f1 = self.f1(pred_labels, labels)
+
+        self.log('train/batch_loss', loss.item())
+        self.log('train/batch_acc', acc)
+        self.log('train/batch_f1', f1)
+
+        return {'loss': loss, 'acc': acc, 'f1': f1}
+
+    def validation_step(self, batch: Dict[str, torch.Tensor], batch_id: int) \
+            -> Dict[str, torch.Tensor]:
+        with torch.no_grad():
+            outputs = self.forward(**batch)
+        logits = outputs.logits.view(-1, self.num_classes)
+        loss = self.val_criterion(logits, batch['labels'].view(-1))
+
+        labels = batch['labels'].view(-1)
+        pred_labels = torch.argmax(logits, dim=1)
+
+        valid_indices = labels != -100
+        labels = labels[valid_indices]
+        pred_labels = pred_labels[valid_indices]
+
+        return {'loss': loss, 'labels': labels, 'pred_labels': pred_labels}
+
+    def validation_epoch_end(self, outputs: List[Dict[str, torch.Tensor]]) \
+            -> Dict[str, float]:
+        """Computes the average batch loss and returns it along with logging
+            information."""
+        loss = torch.cat([o['loss'] for o in outputs], dim=0).mean().item()
+        all_labels = torch.cat([o['labels'] for o in outputs], dim=0)
+        all_preds = torch.cat([o['pred_labels'] for o in outputs], dim=0)
+        acc = self.acc(all_preds, all_labels)
+        f1 = self.f1(all_preds, all_labels)
+
+        self.log('val/val_loss', loss)
+        self.log('val/val_acc', acc)
+        self.log('val/val_f1', f1)
+
+        return {'loss': loss, 'acc': acc, 'f1': f1}
+
+    def test_step(self, batch: Dict[str, torch.Tensor], batch_idx: int) \
+            -> Dict[str, torch.Tensor]:
+        """Computes the test loss for the current batch and returns it."""
+        return self.validation_step(batch, batch_idx)
+
+    def test_epoch_end(self, outputs: List[Dict[str, torch.Tensor]]) \
+            -> Dict[str, float]:
+        """Computes the average test metrics and logs them."""
+        test_loss = torch.cat([o['loss'] for o in outputs], 0).mean().item()
+        all_labels = torch.cat([o['labels'] for o in outputs], dim=0)
+        all_preds = torch.cat([o['pred_labels'] for o in outputs], dim=0)
