@@ -208,3 +208,9 @@ class PoSRoBERTa(pl.LightningModule):
         return {
             'optimizer': optimizer,
             'lr_scheduler': {
+                'scheduler': scheduler,
+                'monitor': 'train/batch_loss',
+                'interval': 'step',
+                'frequency': self.hyperparams['scheduler-step-update']
+            }
+        }
