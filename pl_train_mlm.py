@@ -78,3 +78,17 @@ def main(args: argparse.Namespace):
         fast_dev_run=False,
         logger=logger,
         log_every_n_steps=1
+    )
+    trainer.fit(model)
+    trainer.test(ckpt_path='best')
+
+    # save the model and (optionally) the learning curves plot
+    model.model.save_pretrained(args.savedir)
+    if args.plot_savepath is not None:
+        plot_mlm_losses(args.logdir, args.plot_savepath, framework='pl')
+
+
+if __name__ == "__main__":
+    print()
+    arg = parse_pl_mlm_input()
+    main(arg)
