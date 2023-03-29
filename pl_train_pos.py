@@ -13,4 +13,9 @@ from utils.fs_utils import force_empty_directory
 from utils.run_utils import device_from_str, get_seed, hyperparams_from_config
 from data_preparation.processing import (
     TOKENIZER_PATH,
- 
+    LABEL_ENCODER_PATH,
+    PROCESSED_DATA_PATH
+)
+
+
+def main(args: arg
