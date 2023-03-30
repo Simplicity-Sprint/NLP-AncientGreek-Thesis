@@ -18,4 +18,7 @@ from data_preparation.processing import (
 )
 
 
-def main(args: arg
+def main(args: argparse.Namespace):
+    """main() driver function."""
+
+    # fix some ar
