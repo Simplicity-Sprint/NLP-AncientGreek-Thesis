@@ -25,4 +25,5 @@ def main(args: argparse.Namespace):
     device_str = device_from_str(args.device)
     if args.distributed is True and device_str == 'cpu':
         raise RuntimeError("Distributed training can needs CUDA.")
-    gpus = torch.c
+    gpus = torch.cuda.device_count() if args.distributed is True else \
+        1 if device
