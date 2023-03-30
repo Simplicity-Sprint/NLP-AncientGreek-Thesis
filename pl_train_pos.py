@@ -34,4 +34,5 @@ def main(args: argparse.Namespace):
     force_empty_directory(args.logdir)
     force_empty_directory(args.savedir)
 
-    # load the tokenizer and fix the r
+    # load the tokenizer and fix the random seed
+    tokenizer = RobertaTokenizerFast.from_pretrained(TOKEN
