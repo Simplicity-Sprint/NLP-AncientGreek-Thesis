@@ -23,4 +23,5 @@ def main(args: argparse.Namespace):
 
     # fix some args
     device_str = device_from_str(args.device)
-    if args.d
+    if args.distributed is True and device_str == 'cpu':
+        raise RuntimeErro
