@@ -32,4 +32,6 @@ def main(args: argparse.Namespace):
 
     # empty the tensorboard and model directories
     force_empty_directory(args.logdir)
-    f
+    force_empty_directory(args.savedir)
+
+    # load the tokenizer and fix the r
