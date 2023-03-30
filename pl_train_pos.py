@@ -21,4 +21,6 @@ from data_preparation.processing import (
 def main(args: argparse.Namespace):
     """main() driver function."""
 
-    # fix some ar
+    # fix some args
+    device_str = device_from_str(args.device)
+    if args.d
