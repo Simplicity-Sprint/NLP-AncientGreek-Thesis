@@ -30,4 +30,6 @@ def main(args: argparse.Namespace):
     distributed_strategy = 'ddp' if args.distributed is True else None
     seed = get_seed(args.seed)
 
-    # empty the t
+    # empty the tensorboard and model directories
+    force_empty_directory(args.logdir)
+    f
