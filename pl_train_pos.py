@@ -27,4 +27,7 @@ def main(args: argparse.Namespace):
         raise RuntimeError("Distributed training can needs CUDA.")
     gpus = torch.cuda.device_count() if args.distributed is True else \
         1 if device_str == 'cuda' else None
-    distributed_strategy = 'ddp' if args.distributed is True e
+    distributed_strategy = 'ddp' if args.distributed is True else None
+    seed = get_seed(args.seed)
+
+    # empty the t
