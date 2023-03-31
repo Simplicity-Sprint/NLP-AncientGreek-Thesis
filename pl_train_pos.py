@@ -35,4 +35,7 @@ def main(args: argparse.Namespace):
     force_empty_directory(args.savedir)
 
     # load the tokenizer and fix the random seed
-    tokenizer = RobertaTokenizerFast.from_pretrained(TOKEN
+    tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
+    pl.seed_everything(seed)
+
+    # define the default hyperparameters fo
