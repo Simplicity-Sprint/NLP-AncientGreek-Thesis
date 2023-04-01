@@ -45,4 +45,6 @@ def main(args: argparse.Namespace):
         'learning-rate': 1e-4,
         'weight-decay': 1e-2,
         'use-lr-scheduler': True,
-        'scheduler-f
+        'scheduler-factor': 0.1,
+        'scheduler-patience': 10,
+        'scheduler-step-update': 10,
