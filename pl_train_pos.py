@@ -41,4 +41,6 @@ def main(args: argparse.Namespace):
     # define the default hyperparameters for the model here
     custom_hyperparameters = {
         'max-length': 512,
-   
+        'batch-size': 4,
+        'learning-rate': 1e-4,
+      
