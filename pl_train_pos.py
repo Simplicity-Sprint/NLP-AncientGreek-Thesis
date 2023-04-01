@@ -48,3 +48,7 @@ def main(args: argparse.Namespace):
         'scheduler-factor': 0.1,
         'scheduler-patience': 10,
         'scheduler-step-update': 10,
+        'train-epochs': 4
+    }
+
+    # either use those or load ones fro
