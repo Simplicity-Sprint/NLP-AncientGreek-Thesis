@@ -53,4 +53,5 @@ def main(args: argparse.Namespace):
 
     # either use those or load ones from a configuration file
     hyperparams = custom_hyperparameters \
-      
+        if args.config_path is None \
+        else hyperparams_from_config(ar
