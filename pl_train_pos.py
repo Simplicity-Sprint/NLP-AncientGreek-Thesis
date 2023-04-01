@@ -51,4 +51,6 @@ def main(args: argparse.Namespace):
         'train-epochs': 4
     }
 
-    # either use those or load ones fro
+    # either use those or load ones from a configuration file
+    hyperparams = custom_hyperparameters \
+      
