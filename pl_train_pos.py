@@ -43,4 +43,6 @@ def main(args: argparse.Namespace):
         'max-length': 512,
         'batch-size': 4,
         'learning-rate': 1e-4,
-      
+        'weight-decay': 1e-2,
+        'use-lr-scheduler': True,
+        'scheduler-f
