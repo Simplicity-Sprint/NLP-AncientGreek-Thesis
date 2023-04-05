@@ -60,4 +60,5 @@ def main(args: argparse.Namespace):
     data_dir = PROCESSED_DATA_PATH/'PoS'
     data_paths = (
         (data_dir/'pos-train-input-ids.pkl', data_dir/'pos-train-labels.pkl'),
-        (da
+        (data_dir/'pos-val-input-ids.pkl', data_dir/'pos-val-labels.pkl'),
+      
