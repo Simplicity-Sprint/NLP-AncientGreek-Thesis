@@ -59,4 +59,5 @@ def main(args: argparse.Namespace):
     # create PL model
     data_dir = PROCESSED_DATA_PATH/'PoS'
     data_paths = (
-        (data_dir/'pos-train-input
+        (data_dir/'pos-train-input-ids.pkl', data_dir/'pos-train-labels.pkl'),
+        (da
