@@ -63,4 +63,5 @@ def main(args: argparse.Namespace):
         (data_dir/'pos-val-input-ids.pkl', data_dir/'pos-val-labels.pkl'),
         (data_dir/'pos-test-input-ids.pkl', data_dir/'pos-test-labels.pkl')
     )
-    
+    model = PoSRoBERTa(
+        mlm_model_path=args.pre_trained_m
