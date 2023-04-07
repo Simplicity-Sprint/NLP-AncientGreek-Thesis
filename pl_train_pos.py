@@ -67,4 +67,6 @@ def main(args: argparse.Namespace):
         mlm_model_path=args.pre_trained_model,
         tokenizer=tokenizer,
         paths=data_paths,
-        le_pa
+        le_path=LABEL_ENCODER_PATH,
+        hyperparams=hyperparams,
+        num_cla
