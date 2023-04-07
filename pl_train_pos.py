@@ -64,4 +64,7 @@ def main(args: argparse.Namespace):
         (data_dir/'pos-test-input-ids.pkl', data_dir/'pos-test-labels.pkl')
     )
     model = PoSRoBERTa(
-        mlm_model_path=args.pre_trained_m
+        mlm_model_path=args.pre_trained_model,
+        tokenizer=tokenizer,
+        paths=data_paths,
+        le_pa
