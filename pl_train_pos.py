@@ -69,4 +69,5 @@ def main(args: argparse.Namespace):
         paths=data_paths,
         le_path=LABEL_ENCODER_PATH,
         hyperparams=hyperparams,
-        num_cla
+        num_classes=PoSDataset.num_classes(LABEL_ENCODER_PATH),
+        test_cm_
