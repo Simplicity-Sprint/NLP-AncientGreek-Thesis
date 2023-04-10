@@ -78,4 +78,5 @@ def main(args: argparse.Namespace):
     trainer = pl.Trainer(
         default_root_dir=str(args.logdir),
         gpus=gpus,
-        strategy=distribute
+        strategy=distributed_strategy,
+        max_epochs=hyperparams['train-epo
