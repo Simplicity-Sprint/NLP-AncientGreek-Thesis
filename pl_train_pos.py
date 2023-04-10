@@ -79,4 +79,7 @@ def main(args: argparse.Namespace):
         default_root_dir=str(args.logdir),
         gpus=gpus,
         strategy=distributed_strategy,
-        max_epochs=hyperparams['train-epo
+        max_epochs=hyperparams['train-epochs'],
+        fast_dev_run=False,
+        logger=logger,
+        log_
