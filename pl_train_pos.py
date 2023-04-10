@@ -70,4 +70,8 @@ def main(args: argparse.Namespace):
         le_path=LABEL_ENCODER_PATH,
         hyperparams=hyperparams,
         num_classes=PoSDataset.num_classes(LABEL_ENCODER_PATH),
-        test_cm_
+        test_cm_path=args.confusion_matrix
+    )
+
+    # train the model
+    logger
