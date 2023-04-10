@@ -82,4 +82,7 @@ def main(args: argparse.Namespace):
         max_epochs=hyperparams['train-epochs'],
         fast_dev_run=False,
         logger=logger,
-        log_
+        log_every_n_steps=1
+    )
+    trainer.fit(model)
+    trainer.test(ckpt_path='bes
