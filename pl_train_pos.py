@@ -85,4 +85,7 @@ def main(args: argparse.Namespace):
         log_every_n_steps=1
     )
     trainer.fit(model)
-    trainer.test(ckpt_path='bes
+    trainer.test(ckpt_path='best')
+
+    # save the model and (optionally) the learning curves plot
+    model.model.s
