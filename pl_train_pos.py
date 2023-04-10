@@ -74,4 +74,4 @@ def main(args: argparse.Namespace):
     )
 
     # train the model
-    logger
+    logger = TensorBoardLogger(str(args.logdir), name='PoS-RoBERTa', version=0
