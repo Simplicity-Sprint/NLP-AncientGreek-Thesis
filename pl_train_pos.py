@@ -88,4 +88,6 @@ def main(args: argparse.Namespace):
     trainer.test(ckpt_path='best')
 
     # save the model and (optionally) the learning curves plot
-    model.model.s
+    model.model.save_pretrained(args.savedir)
+    if args.plot_savepath is not None:
+        pl
