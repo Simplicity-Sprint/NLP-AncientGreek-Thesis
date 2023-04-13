@@ -93,4 +93,7 @@ def main(args: argparse.Namespace):
         plot_pos_metrics(args.logdir, args.plot_savepath, framework='pl')
 
 
-if __name__
+if __name__ == "__main__":
+    print()
+    arg = parse_pl_pos_input()
+    main(arg)
