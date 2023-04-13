@@ -90,4 +90,7 @@ def main(args: argparse.Namespace):
     # save the model and (optionally) the learning curves plot
     model.model.save_pretrained(args.savedir)
     if args.plot_savepath is not None:
-        pl
+        plot_pos_metrics(args.logdir, args.plot_savepath, framework='pl')
+
+
+if __name__
