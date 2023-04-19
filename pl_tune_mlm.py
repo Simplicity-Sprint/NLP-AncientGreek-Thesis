@@ -12,4 +12,6 @@ from typing import Tuple, Dict, Union
 from transformers import RobertaTokenizerFast
 from pytorch_lightning import seed_everything
 from hyperopt import hp, fmin, tpe, space_eval
-from pytorch_lightning.loggers
+from pytorch_lightning.loggers import TensorBoardLogger
+
+from pl_models.mlm_model import LitRoBERTaML
