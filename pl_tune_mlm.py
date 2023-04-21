@@ -21,4 +21,9 @@ from utils.fs_utils import force_empty_directory, delete_file_if_exists
 from data_preparation.processing import TOKENIZER_PATH, PROCESSED_DATA_PATH
 
 
-BEST_VA
+BEST_VAL_LOSS = float('inf')
+BEST_ARGS = None
+
+
+def create_and_train_model(
+        ar
