@@ -27,4 +27,5 @@ BEST_ARGS = None
 
 def create_and_train_model(
         args: Dict[str, Union[float, int]],
-        constants: Dict[str, Un
+        constants: Dict[str, Union[int, float, bool, Tuple[Path, Path, Path],
+                   
