@@ -26,4 +26,5 @@ BEST_ARGS = None
 
 
 def create_and_train_model(
-        ar
+        args: Dict[str, Union[float, int]],
+        constants: Dict[str, Un
