@@ -32,4 +32,8 @@ def create_and_train_model(
 ) -> LitRoBERTaMLM:
     """Creates and pre-trains a PL MLM Ancient Greek RoBERTa model."""
     # set the seed
-    seed_everything(args['se
+    seed_everything(args['seed'])
+
+    # create PL model
+    model = LitRoBERTaMLM(
+        tokenizer=consta
