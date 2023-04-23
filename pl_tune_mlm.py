@@ -36,4 +36,6 @@ def create_and_train_model(
 
     # create PL model
     model = LitRoBERTaMLM(
-        tokenizer=consta
+        tokenizer=constants['tokenizer'],
+        paths=constants['data-paths'],
+        
