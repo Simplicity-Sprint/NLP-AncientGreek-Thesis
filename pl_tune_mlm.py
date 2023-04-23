@@ -38,4 +38,8 @@ def create_and_train_model(
     model = LitRoBERTaMLM(
         tokenizer=constants['tokenizer'],
         paths=constants['data-paths'],
-        
+        hyperparams={**args, **constants}
+    )
+
+    # handle logging
+    logdir = 
