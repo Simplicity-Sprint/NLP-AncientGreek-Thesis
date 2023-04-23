@@ -42,4 +42,6 @@ def create_and_train_model(
     )
 
     # handle logging
-    logdir = 
+    logdir = constants['tb-logdir']
+    force_empty_directory(logdir)
+    lo
