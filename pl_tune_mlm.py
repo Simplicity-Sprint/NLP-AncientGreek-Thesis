@@ -30,4 +30,6 @@ def create_and_train_model(
         constants: Dict[str, Union[int, float, bool, Tuple[Path, Path, Path],
                                    RobertaTokenizerFast, Path]]
 ) -> LitRoBERTaMLM:
-    """Creates and pre-trains a PL MLM Ancient Greek 
+    """Creates and pre-trains a PL MLM Ancient Greek RoBERTa model."""
+    # set the seed
+    seed_everything(args['se
