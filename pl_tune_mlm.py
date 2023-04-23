@@ -44,4 +44,6 @@ def create_and_train_model(
     # handle logging
     logdir = constants['tb-logdir']
     force_empty_directory(logdir)
-    logger = TensorBoardLogger(str(logdir), name='AG-RoBERTa-Temp', vers
+    logger = TensorBoardLogger(str(logdir), name='AG-RoBERTa-Temp', version=0)
+
+    # train the model (use a good GPU, otherwise it will 
