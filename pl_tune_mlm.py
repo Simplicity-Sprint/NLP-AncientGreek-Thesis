@@ -49,4 +49,5 @@ def create_and_train_model(
     # train the model (use a good GPU, otherwise it will take ages, trust me)
     trainer = pl.Trainer(
         default_root_dir=str(logdir),
-        gpus=1 if torch.cuda.is_availa
+        gpus=1 if torch.cuda.is_available() else 0,
+        # gpus=torch.cuda.device_count(
