@@ -53,4 +53,6 @@ def create_and_train_model(
         # gpus=torch.cuda.device_count(),  # doesn't work for many, strange bug
         # strategy='ddp',
         max_epochs=constants['train-epochs'],
-        logger=logg
+        logger=logger,
+        log_every_n_steps=1,
+        enable_prog
