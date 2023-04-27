@@ -55,4 +55,8 @@ def create_and_train_model(
         max_epochs=constants['train-epochs'],
         logger=logger,
         log_every_n_steps=1,
-        enable_prog
+        enable_progress_bar=False,
+        enable_model_summary=False
+    )
+    trainer.fit(model)
+
