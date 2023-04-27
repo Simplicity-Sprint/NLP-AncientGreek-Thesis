@@ -60,3 +60,8 @@ def create_and_train_model(
     )
     trainer.fit(model)
 
+    return model
+
+
+def objective(
+        args: Dict[str, Union[flo
