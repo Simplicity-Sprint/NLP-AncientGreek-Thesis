@@ -64,4 +64,5 @@ def create_and_train_model(
 
 
 def objective(
-        args: Dict[str, Union[flo
+        args: Dict[str, Union[float, int]],
+        constants: Dict[str, Union[int, float, bool, Tuple[Path, Path,
