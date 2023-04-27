@@ -51,4 +51,6 @@ def create_and_train_model(
         default_root_dir=str(logdir),
         gpus=1 if torch.cuda.is_available() else 0,
         # gpus=torch.cuda.device_count(),  # doesn't work for many, strange bug
-        # strategy='dd
+        # strategy='ddp',
+        max_epochs=constants['train-epochs'],
+        logger=logg
