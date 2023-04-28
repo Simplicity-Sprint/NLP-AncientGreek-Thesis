@@ -69,4 +69,5 @@ def objective(
                         RobertaTokenizerFast, Path]]
 ) -> float:
     """Creates, trains a PL MLM Ancient Greek RoBERTa model and returns its
-        best loss (across all epochs) on the v
+        best loss (across all epochs) on the validation set."""
+    # the hidden size must be a multiple
