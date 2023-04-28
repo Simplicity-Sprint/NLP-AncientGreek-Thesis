@@ -67,4 +67,5 @@ def objective(
         args: Dict[str, Union[float, int]],
         constants: Dict[str, Union[int, float, bool, Tuple[Path, Path, Path],
                         RobertaTokenizerFast, Path]]
-) ->
+) -> float:
+    """Creates, trains a PL MLM Ancient Greek RoBERTa model 
