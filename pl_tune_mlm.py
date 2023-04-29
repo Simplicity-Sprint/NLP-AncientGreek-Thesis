@@ -82,4 +82,7 @@ def objective(
     # get the validation losses for every epoch from the tensorboard logs
     _, val_losses, _ = get_pl_mlm_losses(constants['tb-logdir'])
 
-    # the performance of the model is the best (minimum) valid
+    # the performance of the model is the best (minimum) validation loss
+    performance = min(val_losses)
+
+    # compare value
