@@ -77,4 +77,6 @@ def objective(
     args['hidden-size'] = hidden_size
 
     # train the model (which is automatically evaluated at every epoch)
-    create_and_train_model(args
+    create_and_train_model(args, constants)
+
+    # get the validation losses for every epoch from the te
