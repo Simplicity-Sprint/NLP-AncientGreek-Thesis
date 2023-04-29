@@ -85,4 +85,6 @@ def objective(
     # the performance of the model is the best (minimum) validation loss
     performance = min(val_losses)
 
-    # compare value
+    # compare value to global best
+    global BEST_VAL_LOSS, BEST_ARGS
+    if performance < BEST_
