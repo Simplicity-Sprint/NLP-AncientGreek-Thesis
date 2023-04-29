@@ -73,4 +73,7 @@ def objective(
     # the hidden size must be a multiple of the number of attention heads
     hidden_size = args['hidden-size']
     num_attention_heads = args['num-attention-heads']
-    hidden_size = (hidden_size // num_attention_heads) * num_attention
+    hidden_size = (hidden_size // num_attention_heads) * num_attention_heads
+    args['hidden-size'] = hidden_size
+
+    # train the mode
