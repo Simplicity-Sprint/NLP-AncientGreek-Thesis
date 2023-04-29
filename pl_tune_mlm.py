@@ -76,4 +76,5 @@ def objective(
     hidden_size = (hidden_size // num_attention_heads) * num_attention_heads
     args['hidden-size'] = hidden_size
 
-    # train the mode
+    # train the model (which is automatically evaluated at every epoch)
+    create_and_train_model(args
