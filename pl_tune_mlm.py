@@ -70,4 +70,5 @@ def objective(
 ) -> float:
     """Creates, trains a PL MLM Ancient Greek RoBERTa model and returns its
         best loss (across all epochs) on the validation set."""
-    # the hidden size must be a multiple
+    # the hidden size must be a multiple of the number of attention heads
+    hidden_size = args['
