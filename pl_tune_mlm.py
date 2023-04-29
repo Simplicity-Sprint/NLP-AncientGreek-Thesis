@@ -79,4 +79,5 @@ def objective(
     # train the model (which is automatically evaluated at every epoch)
     create_and_train_model(args, constants)
 
-    # get the validation losses for every epoch from the te
+    # get the validation losses for every epoch from the tensorboard logs
+    _, val_losses, _ = get_pl_mlm_losses(constants['tb-logd
