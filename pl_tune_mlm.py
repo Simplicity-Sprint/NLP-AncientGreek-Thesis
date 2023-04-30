@@ -101,4 +101,6 @@ def objective(
     return performance
 
 
-de
+def main(args: argparse.Namespace):
+
+    # define the constant v
