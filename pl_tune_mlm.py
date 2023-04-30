@@ -91,4 +91,5 @@ def objective(
         BEST_VAL_LOSS = performance
         BEST_ARGS = args
 
-    # write it on the output file so that we can see the resu
+    # write it on the output file so that we can see the results real time
+    with open(constants['tune-logfile'], 'a') as 
