@@ -96,4 +96,9 @@ def objective(
         fp.write(f'For hyperparameters: {args}\n'
                  f'The validation loss is {performance}.\n\n'
                  f'The best hyperparameters so far are {BEST_ARGS}\n'
-                 f'Which give a valid
+                 f'Which give a validation loss of {BEST_VAL_LOSS}.\n\n\n\n')
+
+    return performance
+
+
+de
