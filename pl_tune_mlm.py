@@ -94,4 +94,5 @@ def objective(
     # write it on the output file so that we can see the results real time
     with open(constants['tune-logfile'], 'a') as fp:
         fp.write(f'For hyperparameters: {args}\n'
-                 f'T
+                 f'The validation loss is {performance}.\n\n'
+                 f'The best
