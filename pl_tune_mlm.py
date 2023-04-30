@@ -87,4 +87,8 @@ def objective(
 
     # compare value to global best
     global BEST_VAL_LOSS, BEST_ARGS
-    if performance < BEST_
+    if performance < BEST_VAL_LOSS:
+        BEST_VAL_LOSS = performance
+        BEST_ARGS = args
+
+ 
