@@ -95,4 +95,5 @@ def objective(
     with open(constants['tune-logfile'], 'a') as fp:
         fp.write(f'For hyperparameters: {args}\n'
                  f'The validation loss is {performance}.\n\n'
-                 f'The best
+                 f'The best hyperparameters so far are {BEST_ARGS}\n'
+                 f'Which give a valid
