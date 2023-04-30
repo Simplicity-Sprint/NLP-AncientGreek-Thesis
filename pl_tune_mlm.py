@@ -92,4 +92,6 @@ def objective(
         BEST_ARGS = args
 
     # write it on the output file so that we can see the results real time
-    with open(constants['tune-logfile'], 'a') as 
+    with open(constants['tune-logfile'], 'a') as fp:
+        fp.write(f'For hyperparameters: {args}\n'
+                 f'T
