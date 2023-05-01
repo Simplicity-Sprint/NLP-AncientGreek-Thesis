@@ -110,4 +110,5 @@ def main(args: argparse.Namespace):
                   data_dir/'test-data.pkl')
     tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
     tb_logdir = Path('logs')/'pl-mlm-hp-tuning'
-    tune_logfile = Path('logs')/'pl-ml
+    tune_logfile = Path('logs')/'pl-mlm-hp-tuning-results.txt'
+    delete_file_if_exists(tune_log
