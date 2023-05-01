@@ -106,4 +106,6 @@ def main(args: argparse.Namespace):
     # define the constant values of the model
     data_dir = PROCESSED_DATA_PATH/'MLM'
     data_paths = (data_dir/'train-data.pkl',
-                  data_dir/'val
+                  data_dir/'val-data.pkl',
+                  data_dir/'test-data.pkl')
+   
