@@ -108,4 +108,5 @@ def main(args: argparse.Namespace):
     data_paths = (data_dir/'train-data.pkl',
                   data_dir/'val-data.pkl',
                   data_dir/'test-data.pkl')
-   
+    tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
+    tb_logdir
