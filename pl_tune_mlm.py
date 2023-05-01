@@ -111,4 +111,7 @@ def main(args: argparse.Namespace):
     tokenizer = RobertaTokenizerFast.from_pretrained(TOKENIZER_PATH)
     tb_logdir = Path('logs')/'pl-mlm-hp-tuning'
     tune_logfile = Path('logs')/'pl-mlm-hp-tuning-results.txt'
-    delete_file_if_exists(tune_log
+    delete_file_if_exists(tune_logfile)
+    constants = {
+        'max-length': 512,
+        'mask-probability':
