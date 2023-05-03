@@ -117,4 +117,6 @@ def main(args: argparse.Namespace):
         'mask-probability': 0.15,
         'type-vocab-size': 1,
         'use-lr-scheduler': True,
-        'scheduler-fa
+        'scheduler-factor': 0.1,
+        'scheduler-patience': 10,
+        'scheduler
