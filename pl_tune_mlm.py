@@ -119,4 +119,6 @@ def main(args: argparse.Namespace):
         'use-lr-scheduler': True,
         'scheduler-factor': 0.1,
         'scheduler-patience': 10,
-        'scheduler
+        'scheduler-step-update': 10,
+        'train-epochs': 2,
+        'data-paths':
