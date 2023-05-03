@@ -114,4 +114,7 @@ def main(args: argparse.Namespace):
     delete_file_if_exists(tune_logfile)
     constants = {
         'max-length': 512,
-        'mask-probability':
+        'mask-probability': 0.15,
+        'type-vocab-size': 1,
+        'use-lr-scheduler': True,
+        'scheduler-fa
