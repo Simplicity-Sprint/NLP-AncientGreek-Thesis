@@ -121,4 +121,6 @@ def main(args: argparse.Namespace):
         'scheduler-patience': 10,
         'scheduler-step-update': 10,
         'train-epochs': 2,
-        'data-paths':
+        'data-paths': data_paths,
+        'tokenizer': tokenizer,
+        'tb-logdir': 
