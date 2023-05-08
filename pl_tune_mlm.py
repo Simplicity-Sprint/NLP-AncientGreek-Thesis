@@ -123,4 +123,8 @@ def main(args: argparse.Namespace):
         'train-epochs': 2,
         'data-paths': data_paths,
         'tokenizer': tokenizer,
-        'tb-logdir': 
+        'tb-logdir': tb_logdir,
+        'tune-logfile': tune_logfile
+    }
+
+    # 
