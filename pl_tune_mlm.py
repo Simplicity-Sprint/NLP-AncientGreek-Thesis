@@ -129,4 +129,6 @@ def main(args: argparse.Namespace):
 
     # define the hyperparameter search space of the model
     search_space = {
-        'hidden-size': hp.choice('hidden-size', [256, 512, 768, 1024
+        'hidden-size': hp.choice('hidden-size', [256, 512, 768, 1024]),
+        'num-attention-heads': hp.quniform('num-attention-heads', 2, 16, 1),
+   
