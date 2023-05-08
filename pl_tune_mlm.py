@@ -127,4 +127,5 @@ def main(args: argparse.Namespace):
         'tune-logfile': tune_logfile
     }
 
-    # 
+    # define the hyperparameter search space of the model
+    search_space = 
