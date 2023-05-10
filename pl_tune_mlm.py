@@ -133,4 +133,5 @@ def main(args: argparse.Namespace):
         'num-attention-heads': hp.quniform('num-attention-heads', 2, 16, 1),
         'num-hidden-layers': hp.quniform('num-hidden-layers', 2, 12, 1),
         'batch-size': hp.choice('batch-size', [4, 8, 16, 32]),
-        'learn
+        'learning-rate': hp.loguniform('learning-rate',
+                         
