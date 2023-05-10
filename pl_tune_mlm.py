@@ -139,4 +139,5 @@ def main(args: argparse.Namespace):
         'seed': hp.choice('seed', [3, 13, 420, 3407, 80085])
     }
 
-    # wrap the
+    # wrap the objective function so that it also receives the constant values
+  
