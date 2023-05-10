@@ -136,4 +136,7 @@ def main(args: argparse.Namespace):
         'learning-rate': hp.loguniform('learning-rate',
                                        np.log(1e-6), np.log(3e-4)),
         'weight-decay': hp.loguniform('weight-decay', np.log(1e-2), 0),
-        'seed': hp.cho
+        'seed': hp.choice('seed', [3, 13, 420, 3407, 80085])
+    }
+
+    # wrap the
