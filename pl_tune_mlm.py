@@ -134,4 +134,5 @@ def main(args: argparse.Namespace):
         'num-hidden-layers': hp.quniform('num-hidden-layers', 2, 12, 1),
         'batch-size': hp.choice('batch-size', [4, 8, 16, 32]),
         'learning-rate': hp.loguniform('learning-rate',
-                         
+                                       np.log(1e-6), np.log(3e-4)),
+        'weight-decay': hp
