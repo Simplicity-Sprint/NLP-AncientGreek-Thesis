@@ -135,4 +135,5 @@ def main(args: argparse.Namespace):
         'batch-size': hp.choice('batch-size', [4, 8, 16, 32]),
         'learning-rate': hp.loguniform('learning-rate',
                                        np.log(1e-6), np.log(3e-4)),
-        'weight-decay': hp
+        'weight-decay': hp.loguniform('weight-decay', np.log(1e-2), 0),
+        'seed': hp.cho
