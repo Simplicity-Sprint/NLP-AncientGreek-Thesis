@@ -154,4 +154,6 @@ def main(args: argparse.Namespace):
         algo=tpe.suggest,
         max_evals=args.max_evals
     )
-    end_time = time
+    end_time = time.time()
+    print(f'\nBest hyperparameters found are: {best}')
+    print(f'Which
