@@ -151,4 +151,7 @@ def main(args: argparse.Namespace):
     best = fmin(
         fmin_objective_fn,
         search_space,
-        algo=tpe
+        algo=tpe.suggest,
+        max_evals=args.max_evals
+    )
+    end_time = time
