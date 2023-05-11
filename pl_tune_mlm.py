@@ -157,4 +157,4 @@ def main(args: argparse.Namespace):
     end_time = time.time()
     print(f'\nBest hyperparameters found are: {best}')
     print(f'Which correspond to: {space_eval(search_space, best)}\n')
-    pr
+    print(f'Time it took for tuning: {end_time - start_time:.2f} 
