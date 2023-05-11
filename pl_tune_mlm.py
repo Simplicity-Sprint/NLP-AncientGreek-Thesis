@@ -148,4 +148,7 @@ def main(args: argparse.Namespace):
 
     # bayesian search for optimal hyperparameters
     start_time = time.time()
-    best
+    best = fmin(
+        fmin_objective_fn,
+        search_space,
+        algo=tpe
