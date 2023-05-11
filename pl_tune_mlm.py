@@ -146,4 +146,6 @@ def main(args: argparse.Namespace):
     warnings.filterwarnings('ignore')
     logging.getLogger('lightning').setLevel(logging.ERROR)
 
-    # bayesian search
+    # bayesian search for optimal hyperparameters
+    start_time = time.time()
+    best
