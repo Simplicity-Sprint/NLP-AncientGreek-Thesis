@@ -144,4 +144,6 @@ def main(args: argparse.Namespace):
 
     # remove UserWarnings from pl
     warnings.filterwarnings('ignore')
-    logg
+    logging.getLogger('lightning').setLevel(logging.ERROR)
+
+    # bayesian search
