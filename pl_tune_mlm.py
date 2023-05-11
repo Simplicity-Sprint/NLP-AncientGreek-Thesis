@@ -140,4 +140,8 @@ def main(args: argparse.Namespace):
     }
 
     # wrap the objective function so that it also receives the constant values
-    fmin_objective_fn = partial(objective, constants=constant
+    fmin_objective_fn = partial(objective, constants=constants)
+
+    # remove UserWarnings from pl
+    warnings.filterwarnings('ignore')
+    logg
