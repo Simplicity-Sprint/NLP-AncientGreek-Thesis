@@ -162,4 +162,5 @@ def main(args: argparse.Namespace):
 
 if __name__ == "__main__":
     print()
-    arg = parse
+    arg = parse_tune_mlm_input()
+    main(arg)
