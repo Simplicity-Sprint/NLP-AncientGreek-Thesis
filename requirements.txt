@@ -4,4 +4,7 @@ transformers~=4.17.0
 tqdm~=4.62.3
 tokenizers~=0.11.4
 numpy~=1.22.1
-s
+scikit-learn~=1.0.2
+hyperopt~=0.2.7
+tensorboard~=2.6.0
+betacode~=1.0
