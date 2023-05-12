@@ -8,3 +8,7 @@ scikit-learn~=1.0.2
 hyperopt~=0.2.7
 tensorboard~=2.6.0
 betacode~=1.0
+pygtrie~=2.4.2
+requests~=2.27.1
+beautifulsoup4==4.8.1
+cltk==0.
