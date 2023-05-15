@@ -193,3 +193,31 @@ def parse_hf_pos_input(arg: Optional[List[str]] = None) -> argparse.Namespace:
     # whether to omit cuda
     parser.add_argument('-n', '--no-cuda', action='store_true',
                         help='If toggled, then no GPUs will be used for '
+                             'training. Else, all available GPUs will be used.')
+    # random seed
+    parser.add_argument('--seed', type=str, action='store',
+                        default=default_seed, metavar='seed',
+                        help='Random seed to be set. Used for reproducibility '
+                             'purposes. If not specified, then a random seed '
+                             'will be set.')
+
+    return parser.parse_args(arg)
+
+
+def parse_tune_mlm_input(arg: Optional[List[str]] = None) -> argparse.Namespace:
+    """Parses the input for the MLM Hyperparameter Tuning scripts (same for
+        both frameworks)."""
+    default_max_evals = 100
+
+    desc = 'Hyperparameter Tuning script.'
+    parser = argparse.ArgumentParser(description=desc)
+
+    parser.add_argument('-e', '--max-evals', type=int, action='store',
+                        metavar='number-of-maximum-objective-'
+                                'function-evaluations',
+                        default=default_max_evals,
+                        help='The number of maximum objective function '
+                             'evaluations to perform during the bayesian '
+                             'search.')
+
+    return parser.parse_args(arg)
