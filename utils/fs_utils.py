@@ -11,4 +11,5 @@ def delete_contents_of_directory(dir_path: Path) -> None:
     for file_path in dir_path.iterdir():
         if os.path.isfile(file_path) or os.path.islink(file_path):
             os.unlink(file_path)
-    
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_
