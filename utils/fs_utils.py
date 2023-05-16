@@ -9,4 +9,6 @@ def delete_contents_of_directory(dir_path: Path) -> None:
     if not os.path.isdir(dir_path):
         return
     for file_path in dir_path.iterdir():
-        if os.path.isfile(fil
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+    
