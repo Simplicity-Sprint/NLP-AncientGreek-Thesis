@@ -12,4 +12,8 @@ def delete_contents_of_directory(dir_path: Path) -> None:
         if os.path.isfile(file_path) or os.path.islink(file_path):
             os.unlink(file_path)
         elif os.path.isdir(file_path):
-            shutil.rmtree(file_
+            shutil.rmtree(file_path)
+
+
+def create_directory_if_not_exists(dir_path: Path) -> None:
+    """Crea
