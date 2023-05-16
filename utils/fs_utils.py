@@ -20,4 +20,5 @@ def create_directory_if_not_exists(dir_path: Path) -> None:
     os.makedirs(dir_path, exist_ok=True)
 
 
-def force_empty_directory(dir_path:
+def force_empty_directory(dir_path: Path) -> None:
+    """Given a directory path, it creates it 
