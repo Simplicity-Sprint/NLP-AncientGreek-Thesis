@@ -17,4 +17,7 @@ def delete_contents_of_directory(dir_path: Path) -> None:
 
 def create_directory_if_not_exists(dir_path: Path) -> None:
     """Creates (recursively) a directory in the specified path."""
-    os.makedir
+    os.makedirs(dir_path, exist_ok=True)
+
+
+def force_empty_directory(dir_path:
