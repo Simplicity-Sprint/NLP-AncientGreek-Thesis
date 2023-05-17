@@ -29,4 +29,5 @@ def force_empty_directory(dir_path: Path) -> None:
         delete_contents_of_directory(dir_path)
 
 
-def delete_file_if_exists(file_path: 
+def delete_file_if_exists(file_path: Path) -> None:
+    """Checks if the given path corresponds to a file, and if it
