@@ -24,4 +24,6 @@ def force_empty_directory(dir_path: Path) -> None:
     """Given a directory path, it creates it if it doesn't exist. If it exists,
         it empties it."""
     if not os.path.isdir(dir_path):
-        create_dire
+        create_directory_if_not_exists(dir_path)
+    else:
+        delete_c
