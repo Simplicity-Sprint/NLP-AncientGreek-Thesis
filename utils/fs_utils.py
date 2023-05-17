@@ -21,4 +21,5 @@ def create_directory_if_not_exists(dir_path: Path) -> None:
 
 
 def force_empty_directory(dir_path: Path) -> None:
-    """Given a directory path, it creates it 
+    """Given a directory path, it creates it if it doesn't exist. If it exists,
+        it empti
