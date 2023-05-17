@@ -26,4 +26,7 @@ def force_empty_directory(dir_path: Path) -> None:
     if not os.path.isdir(dir_path):
         create_directory_if_not_exists(dir_path)
     else:
-        delete_c
+        delete_contents_of_directory(dir_path)
+
+
+def delete_file_if_exists(file_path: 
