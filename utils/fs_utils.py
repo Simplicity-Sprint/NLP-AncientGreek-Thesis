@@ -33,4 +33,4 @@ def delete_file_if_exists(file_path: Path) -> None:
     """Checks if the given path corresponds to a file, and if it does, it
         deletes it."""
     if os.path.isfile(file_path):
-    
+        os.remove(file_path)
