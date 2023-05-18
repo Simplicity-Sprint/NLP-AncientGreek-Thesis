@@ -90,3 +90,68 @@ def plot_mlm_losses(
 
     # save
     if not savepath.parent.is_dir():
+        os.makedirs(savepath.parent)
+    plt.savefig(savepath, bbox_inches='tight')
+
+
+def get_pl_pos_metrics(logdir: Path) -> Tuple[
+    Tuple[List[float], List[float], List[float]],
+    Tuple[List[float], List[float], List[float]],
+    Tuple[Optional[float], Optional[float], Optional[float]]
+]:
+    """Reads the train/val/test metrics (loss/accuracy/f1) from tensorboard
+        log files and returns them."""
+    train_losses, val_losses, test_loss = [], [], None
+    train_acc, val_acc, test_acc = [], [], None
+    train_f1, val_f1, test_f1 = [], [], None
+
+    # scan tensorboard files and save the losses in the lists
+    tb_files = glob.glob(f'{logdir}/*/*/events.out.tfevents.*')
+    for tb_out in tb_files:
+        for e in EventFileLoader(tb_out).Load():
+            if len(e.summary.value) > 0:
+                if e.summary.value[0].tag == 'train/batch_loss':
+                    train_losses.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'train/batch_acc':
+                    train_acc.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'train/batch_f1':
+                    train_f1.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'val/val_loss':
+                    val_losses.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'val/val_acc':
+                    val_acc.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'val/val_f1':
+                    val_f1.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'test/test_loss':
+                    test_loss = e.summary.value[0].tensor.float_val[0]
+                elif e.summary.value[0].tag == 'test/test_acc':
+                    test_acc = e.summary.value[0].tensor.float_val[0]
+                elif e.summary.value[0].tag == 'test/test_f1':
+                    test_f1 = e.summary.value[0].tensor.float_val[0]
+
+    train_metrics = (train_losses, train_acc, train_f1)
+    val_metrics = (val_losses, val_acc, val_f1)
+    test_metrics = (test_loss, test_acc, test_f1)
+    return train_metrics, val_metrics, test_metrics
+
+
+def get_hf_pos_metrics(logdir: Path) -> Tuple[
+    Tuple[List[float], List[float], List[float]],
+    Tuple[List[float], List[float], List[float]]
+]:
+    """Reads the train/val loss/accuracy/f1 metrics from tensorboard files
+        and returns them."""
+    train_losses, val_losses = [], []
+    train_acc, val_acc = [], []
+    train_f1, val_f1 = [], []
+
+    # scan tensorboard files and save the losses in the lists
+    tb_files = glob.glob(f'{logdir}/events.out.tfevents.*') + \
+        glob.glob(f'{logdir}/*/events.out.tfevents.*')
+    for tb_out in tb_files:
+        for e in EventFileLoader(tb_out).Load():
+            if len(e.summary.value) > 0:
+                if e.summary.value[0].tag == 'train/loss':
+                    train_losses.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'eval/loss':
+                    val_losses.append(e.summary.value[0].tensor.float_val[0])
