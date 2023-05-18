@@ -155,3 +155,74 @@ def get_hf_pos_metrics(logdir: Path) -> Tuple[
                     train_losses.append(e.summary.value[0].tensor.float_val[0])
                 elif e.summary.value[0].tag == 'eval/loss':
                     val_losses.append(e.summary.value[0].tensor.float_val[0])
+                if e.summary.value[0].tag == 'train/accuracy':
+                    train_acc.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'eval/accuracy':
+                    val_acc.append(e.summary.value[0].tensor.float_val[0])
+                if e.summary.value[0].tag == 'train/f1':
+                    train_f1.append(e.summary.value[0].tensor.float_val[0])
+                elif e.summary.value[0].tag == 'eval/f1':
+                    val_f1.append(e.summary.value[0].tensor.float_val[0])
+
+    train_metrics = (train_losses, train_acc, train_f1)
+    val_metrics = (val_losses, val_acc, val_f1)
+    return train_metrics, val_metrics
+
+
+def plot_pos_metrics(
+        logdir: Path,
+        savepath: Path,
+        framework: str = 'pl',
+        test_metrics: Optional[Tuple[float, float, float]] = None
+) -> None:
+    """Plots the train metrics per batch step, the validation metrics per epoch
+        (which is equivalent to the batch steps that correspond to one epoch)
+        and the test metrics of the final model (basically scattered as a point)
+        and saves the result in the specified file."""
+    if framework == 'pl':
+        train_metrics, val_metrics, test_metrics = get_pl_pos_metrics(logdir)
+    elif framework == 'hf':
+        train_metrics, val_metrics = get_hf_pos_metrics(logdir)
+    else:
+        raise ValueError(f'Unknown framework {framework}.')
+
+    train_losses, train_acc, train_f1 = train_metrics
+    val_losses, val_acc, val_f1 = val_metrics
+    test_loss, test_acc, test_f1 = test_metrics if test_metrics is not None \
+        else (None,) * 3
+
+    # determine the batch step index of the epochs ends
+    val_steps = np.linspace(0, len(train_losses) - 1, len(val_losses) + 1)[1:]
+
+    # plots
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(28, 10))
+
+    # left: losses
+    ax1.plot(train_losses, label='Batch Train Loss', linewidth=2, color='blue')
+    ax1.plot(val_steps, val_losses, label='Epoch Validation Loss', linewidth=2,
+             color='orange')
+    if test_loss is not None:
+        ax1.scatter(len(train_losses) - 1, test_loss, label='Test Loss',
+                    color='red', s=45)
+    ax1.set_xlabel('Steps', fontsize=16)
+    ax1.set_ylabel('Loss', fontsize=16)
+    ax1.tick_params(axis='both', which='major', labelsize=12)
+    ax1.set_title('Learning curves', fontsize=16)
+    ax1.legend(prop={'size': 16})
+
+    # mid: accuracies
+    ax2.plot(train_acc, label='Batch Train Accuracy', linewidth=2, color='blue')
+    ax2.plot(val_steps, val_acc, label='Epoch Validation Accuracy',
+             linewidth=2, color='orange')
+    if test_acc is not None:
+        ax2.scatter(len(train_acc) - 1, test_acc, label='Test Accuracy',
+                    color='red', s=45)
+    ax2.set_xlabel('Steps', fontsize=16)
+    ax2.set_ylabel('Accuracy', fontsize=16)
+    ax2.tick_params(axis='both', which='major', labelsize=12)
+    ax2.set_title('Accuracies', fontsize=16)
+    ax2.legend(prop={'size': 16})
+
+    # right: f1
+    ax3.plot(train_f1, label='Batch Train F1', linewidth=2, color='blue')
+    ax3.plot(val_steps, val_f1, label='Epoch Validation F1', linewidth=2,
