@@ -226,3 +226,31 @@ def plot_pos_metrics(
     # right: f1
     ax3.plot(train_f1, label='Batch Train F1', linewidth=2, color='blue')
     ax3.plot(val_steps, val_f1, label='Epoch Validation F1', linewidth=2,
+             color='orange')
+    if test_f1 is not None:
+        ax3.scatter(len(train_f1) - 1, test_f1, label='Test F1',
+                    color='red', s=45)
+    ax3.set_xlabel('Steps', fontsize=16)
+    ax3.set_ylabel('Weighted F1', fontsize=16)
+    ax3.tick_params(axis='both', which='major', labelsize=12)
+    ax3.set_title('Weighted F1 Scores', fontsize=16)
+    ax3.legend(prop={'size': 16})
+
+    # save
+    if not savepath.parent.is_dir():
+        os.makedirs(savepath.parent)
+    fig.savefig(savepath, bbox_inches='tight')
+
+
+def plot_confusion_matrix(
+        cm: torch.Tensor,
+        classes: List[str],
+        savepath: Path
+) -> None:
+    """Plots and saves the given confusion matrix as a heatmap."""
+    df_cm = pd.DataFrame(cm.cpu(), index=classes, columns=classes)
+    plt.figure(figsize=(16, 11))
+    sns.heatmap(df_cm, annot=True, fmt='d', cmap=sns.cm.rocket_r)
+    if not savepath.parent.is_dir():
+        os.makedirs(savepath.parent)
+    plt.savefig(savepath, bbox_inches='tight')
