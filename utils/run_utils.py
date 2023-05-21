@@ -15,4 +15,7 @@ def device_from_str(device_str: str) -> str:
 
 
 def get_seed(seed_str: str) -> int:
-    if 
+    if seed_str == 'random':
+        return random.randrange(int(1e10))
+    else:
+        re
