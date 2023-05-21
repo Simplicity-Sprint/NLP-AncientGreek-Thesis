@@ -18,4 +18,7 @@ def get_seed(seed_str: str) -> int:
     if seed_str == 'random':
         return random.randrange(int(1e10))
     else:
-        re
+        return int(seed_str)
+
+
+def hyperparams_from_config(config_path: Path) \
