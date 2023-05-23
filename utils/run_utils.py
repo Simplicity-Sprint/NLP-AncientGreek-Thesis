@@ -27,4 +27,7 @@ def hyperparams_from_config(config_path: Path) \
         hyperparameters it contains in a dictionary-like object."""
     def values_to_numeric(inp: Dict[str, str]) -> Dict[str, Union[int, float]]:
         """Converts the values of a dictionary from string to numerical."""
-        return {key: ast.literal_eval(value) for key, v
+        return {key: ast.literal_eval(value) for key, value in inp.items()}
+
+    cf = configparser.ConfigParser()
+    cf.read(config
