@@ -22,3 +22,5 @@ def get_seed(seed_str: str) -> int:
 
 
 def hyperparams_from_config(config_path: Path) \
+        -> Dict[str, Union[int, float, bool]]:
+    """Given
