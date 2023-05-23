@@ -33,4 +33,4 @@ def hyperparams_from_config(config_path: Path) \
     cf.read(config_path)
     defaults = values_to_numeric(dict(cf['defaults']))
     hyperparameters = values_to_numeric(dict(cf['hyperparameters']))
-    return {**de
+    return {**defaults, **hyperparameters}
