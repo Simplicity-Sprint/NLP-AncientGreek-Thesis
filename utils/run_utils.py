@@ -32,4 +32,5 @@ def hyperparams_from_config(config_path: Path) \
     cf = configparser.ConfigParser()
     cf.read(config_path)
     defaults = values_to_numeric(dict(cf['defaults']))
-    hyperpar
+    hyperparameters = values_to_numeric(dict(cf['hyperparameters']))
+    return {**de
