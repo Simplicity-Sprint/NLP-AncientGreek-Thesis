@@ -30,4 +30,6 @@ def hyperparams_from_config(config_path: Path) \
         return {key: ast.literal_eval(value) for key, value in inp.items()}
 
     cf = configparser.ConfigParser()
-    cf.read(config
+    cf.read(config_path)
+    defaults = values_to_numeric(dict(cf['defaults']))
+    hyperpar
