@@ -26,4 +26,5 @@ def hyperparams_from_config(config_path: Path) \
     """Given the path of a config file, it reads it and returns the
         hyperparameters it contains in a dictionary-like object."""
     def values_to_numeric(inp: Dict[str, str]) -> Dict[str, Union[int, float]]:
-        """Converts the values of a dictionary from string to numer
+        """Converts the values of a dictionary from string to numerical."""
+        return {key: ast.literal_eval(value) for key, v
