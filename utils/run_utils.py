@@ -25,4 +25,4 @@ def hyperparams_from_config(config_path: Path) \
         -> Dict[str, Union[int, float, bool]]:
     """Given the path of a config file, it reads it and returns the
         hyperparameters it contains in a dictionary-like object."""
-    def v
+    def values_to_numeric(inp: Dict[str, str]) -> Dict[str, Union[int, float
