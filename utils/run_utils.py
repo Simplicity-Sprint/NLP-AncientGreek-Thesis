@@ -24,4 +24,5 @@ def get_seed(seed_str: str) -> int:
 def hyperparams_from_config(config_path: Path) \
         -> Dict[str, Union[int, float, bool]]:
     """Given the path of a config file, it reads it and returns the
-        hy
+        hyperparameters it contains in a dictionary-like object."""
+    def v
